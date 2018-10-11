@@ -38,13 +38,77 @@ export default class SavageSkills extends Component {
                         <option value="12">12</option>
                     </select>
                 </div>
-                <div>Climbing (Str): <input type='text' name='climbing' onChange={this.updateSkill} defaultValue={this.state.skills.climbing} /> </div>
-                <div>Driving (Agi): <input type='text' name='driving' onChange={this.updateSkill} defaultValue={this.state.skills.driving} /> </div>
-                <div>Fighting (Agi): <input type='text' name='fighting' onChange={this.updateSkill} defaultValue={this.state.skills.fighting} /> </div>
-                <div>Gambling (Sma): <input type='text' name='gambling' onChange={this.updateSkill} defaultValue={this.state.skills.gambling} /> </div>
-                <div>Healing (Sma): <input type='text' name='healing' onChange={this.updateSkill} defaultValue={this.state.skills.healing} /> </div>
-                <div>Intimidation (Spi): <input type='text' name='intimidation' onChange={this.updateSkill} defaultValue={this.state.skills.intimidation} /> </div>
-                <div>Investigation (Sma): <input type='text' name='investigation' onChange={this.updateSkill} defaultValue={this.state.skills.investigation} /> </div>
+                <div>Climbing (Str):
+                    <select name="climbing" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Driving (Agi):
+                    <select name="driving" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Fighting (Agi):
+                   <select name="fighting" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Gambling (Sma):
+                    <select name="gambling" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Healing (Sma):
+                    <select name="healing" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Intimidation (Spi):
+                    <select name="intimidation" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>Investigation (Sma):
+                    <select name="investigation" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
                 <div>Boating (Agi): {this.state.skills.boating} </div>
                 <div>Climbing (Str): {this.state.skills.climbing} </div>
                 <div>Driving (Agi): {this.state.skills.driving} </div>
