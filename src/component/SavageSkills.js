@@ -29,7 +29,7 @@ export default class SavageSkills extends Component {
             <div>
                 <h2>Skills</h2>
                 <div>Boating (Agi):
-                    <select name="boating" onChange={this.updateSkill}>
+                    <select name="boating" value={this.state.skills.boating} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -39,7 +39,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Climbing (Str):
-                    <select name="climbing" onChange={this.updateSkill}>
+                    <select name="climbing" value={this.state.skills.climbing} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
