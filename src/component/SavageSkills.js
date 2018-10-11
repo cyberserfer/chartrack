@@ -21,21 +21,23 @@ export default class SavageSkills extends Component {
     }
     updateSkill(e) {
         console.log(e);
-        let target = e.target;
-        let value = target.value;
-        let name = target.name;
-        let skillsUpdate = {...this.state.skills}
-
-        skillsUpdate.name = value;
-        this.setState({skillsUpdate})
-
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
         return (
             <div>
                 <h2>Skills</h2>
-                <div>Boating (Agi): <input type='text' name='boating' onBlur={this.updateSkill} defaultValue={this.state.skills.boating} /> </div>
+                <div>Boating (Agi):
+                    <select name="boating" onChange={this.updateSkill}>
+                        <option value="0">0 </option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
                 <div>Climbing (Str): <input type='text' name='climbing' onChange={this.updateSkill} defaultValue={this.state.skills.climbing} /> </div>
                 <div>Driving (Agi): <input type='text' name='driving' onChange={this.updateSkill} defaultValue={this.state.skills.driving} /> </div>
                 <div>Fighting (Agi): <input type='text' name='fighting' onChange={this.updateSkill} defaultValue={this.state.skills.fighting} /> </div>
@@ -51,7 +53,7 @@ export default class SavageSkills extends Component {
                 <div>Healing (Sma): {this.state.skills.healing} </div>
                 <div>Intimidation (Spi): {this.state.skills.intimidation} </div>
                 <div>Investigation (Sma): {this.state.skills.investigation} </div>
-            
+
             </div>
         );
     }
