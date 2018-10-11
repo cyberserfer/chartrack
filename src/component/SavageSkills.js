@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SkillValues from './SkillValues'
 
 export default class SavageSkills extends Component {
 
@@ -29,7 +30,7 @@ export default class SavageSkills extends Component {
             <div>
                 <h2>Skills</h2>
                 <div>Boating (Agi):
-                    <select name="boating" value={this.state.skills.boating} onChange={this.updateSkill}>
+                    <select name="boating" defaultValue={this.state.skills.boating} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -39,7 +40,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Climbing (Str):
-                    <select name="climbing" value={this.state.skills.climbing} onChange={this.updateSkill}>
+                    <select name="climbing" defaultValue={this.state.skills.climbing} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -49,7 +50,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Driving (Agi):
-                    <select name="driving" onChange={this.updateSkill}>
+                    <select name="driving" defaultValue={this.state.skills.driving} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -59,7 +60,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Fighting (Agi):
-                   <select name="fighting" onChange={this.updateSkill}>
+                   <select name="fighting" defaultValue={this.state.skills.fighting} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -69,7 +70,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Gambling (Sma):
-                    <select name="gambling" onChange={this.updateSkill}>
+                    <select name="gambling" defaultValue={this.state.skills.gambling} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -79,7 +80,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Healing (Sma):
-                    <select name="healing" onChange={this.updateSkill}>
+                    <select name="healing" defaultValue={this.state.skills.healing} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -89,7 +90,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Intimidation (Spi):
-                    <select name="intimidation" onChange={this.updateSkill}>
+                    <select name="intimidation" defaultValue={this.state.skills.intimidation} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -99,7 +100,7 @@ export default class SavageSkills extends Component {
                     </select>
                 </div>
                 <div>Investigation (Sma):
-                    <select name="investigation" onChange={this.updateSkill}>
+                    <select name="investigation" defaultValue={this.state.skills.investigation} onChange={this.updateSkill}>
                         <option value="0">0 </option>
                         <option value="4">4</option>
                         <option value="6">6</option>
@@ -108,15 +109,6 @@ export default class SavageSkills extends Component {
                         <option value="12">12</option>
                     </select>
                 </div>
-
-                <div>Boating (Agi): {this.state.skills.boating} </div>
-                <div>Climbing (Str): {this.state.skills.climbing} </div>
-                <div>Driving (Agi): {this.state.skills.driving} </div>
-                <div>Fighting (Agi): {this.state.skills.fighting} </div>
-                <div>Gambling (Sma): {this.state.skills.gambling} </div>
-                <div>Healing (Sma): {this.state.skills.healing} </div>
-                <div>Intimidation (Spi): {this.state.skills.intimidation} </div>
-                <div>Investigation (Sma): {this.state.skills.investigation} </div>
 
             </div>
         );
