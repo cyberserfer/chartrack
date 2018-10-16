@@ -24,8 +24,18 @@ Campaign
 
 CharacterName
 
-Attributes
+CharacterDescription
+
+Stats
+
+Derived Stats
 
 SKills
 
+Weapons
+
+Armor
+
 Equipment
+
+Notes
