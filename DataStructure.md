@@ -3,7 +3,7 @@
 ## Master
 Player
 
-Authentication
+Player_Id
 
 ## GameSystems
 SavageWorlds
@@ -18,6 +18,8 @@ Cataclysm
 ChroniclesOfX
 
 ## Character
+Character_Id
+
 GameSystem
 
 Campaign
