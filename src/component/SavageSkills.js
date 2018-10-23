@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SkillValues from './SkillValues'
+//import SkillValues from './SkillValues'
 
 export default class SavageSkills extends Component {
 
