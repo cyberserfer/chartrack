@@ -3,7 +3,12 @@ var Schema = mongoose.Schema;
 
 var swSchema = new Schema({
     playerName: String,
+    playerId: Number,
     gameSystem: String,
+    campaign: String,
+    characterName: String,
+    characterId: Number,
+    charDescription: String,
     createdDate: { type: Date, default: Date.now },
     updatedDate: { type: Date, default: Date.now },
 
@@ -47,8 +52,8 @@ var swSchema = new Schema({
             type: Number,
             default: 0
         },
-    }
-    
+    },
+
     skills: {
         boating: {
             type: Number,
