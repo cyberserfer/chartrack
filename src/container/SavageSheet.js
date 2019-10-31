@@ -14,8 +14,8 @@ export default class SavageSheet extends Component {
             Vigor: 8,
         },
         skills: {
+            Athletics: 6,
             Boating: 4,
-            Climbing: 6,
             Driving: 0,
             Fighting: 8,
             Gambling: 8,
