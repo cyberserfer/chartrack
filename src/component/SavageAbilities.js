@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 
 export default class SavageAbilities extends Component {
-    possibleAttributes = [ 0,4,6,8,10,12 ]
-    
+    possibleAttributes = [0, 4, 6, 8, 10, 12]
+
     render() {
         const { updateAttributes, attributes } = this.props
         const atts = Object.entries(attributes)
@@ -14,21 +15,31 @@ export default class SavageAbilities extends Component {
                         const key = att[0]
                         const value = att[1]
                         return (
-                            <div key={key}>{key} 
-                                <select 
-                                    name={key}
-                                    onChange={e => updateAttributes(e)}
-                                    defaultValue={value}
-                                >
-                                {this.possibleAttributes.map((item, i) =>
-                                    <option 
-                                        key={i} 
-                                        value={item}
-                                    >
-                                        {item}
-                                    </option>)}
-                                </select>
-                        </div>
+                            <div key={key}>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={3}>
+                                        {key}
+                                    </Grid>
+                                    <Grid item xs={1}>
+                                        <span />
+                                    </Grid>
+                                    <Grid item xs={7}>
+                                        <select
+                                            name={key}
+                                            onChange={e => updateAttributes(e)}
+                                            defaultValue={value}
+                                        >
+                                            {this.possibleAttributes.map((item, i) =>
+                                                <option
+                                                    key={i}
+                                                    value={item}
+                                                >
+                                                    {item}
+                                                </option>)}
+                                        </select>
+                                    </Grid>
+                                </Grid>
+                            </div>
                         )
                     })}
                 </div>
