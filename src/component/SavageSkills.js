@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-//import SkillValues from './SkillValues'
 
 export default class SavageSkills extends Component {
-    possibleValues = [0, 4, 6, 8, 10, 12]
 
     render() {
-        const { updateSkills, skills } = this.props
+        const { updateSkills, skills, possibleValues } = this.props
         const skillEntries = Object.entries(skills)
         return (
             <div>
@@ -30,7 +28,7 @@ export default class SavageSkills extends Component {
                                             onChange={e => updateSkills(e)}
                                             defaultValue={value}
                                         >
-                                            {this.possibleValues.map((item, i) =>
+                                            {possibleValues.map((item, i) =>
                                                 <option
                                                     key={i}
                                                     value={item}

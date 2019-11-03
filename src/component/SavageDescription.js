@@ -10,11 +10,25 @@ export default class SavageDescription extends Component {
       <div>
         <h2> Character Description</h2>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <span>Name: </span>
+          <Grid item xs={4}>
+            <span>Character Name: </span>
             <input
               onChange={e => updateDescription(e)}
-              defaultValue={description.Name}
+              defaultValue={description.CharacterName}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <span>Player Name: </span>
+            <input
+              onChange={e => updateDescription(e)}
+              defaultValue={description.PlayerName}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <span>Campaign: </span>
+            <input
+              onChange={e => updateDescription(e)}
+              defaultValue={description.Campaign}
             />
           </Grid>
           <Grid item xs={1}>

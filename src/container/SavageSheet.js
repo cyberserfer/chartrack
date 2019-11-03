@@ -4,58 +4,15 @@ import SavageSkills from '../component/SavageSkills';
 import SavageDerivedStats from '../component/SavageDerivedStats';
 import Grid from '@material-ui/core/Grid';
 import SavageDescription from '../component/SavageDescription';
+import SavageEdges from '../component/SavageEdges';
+import { possibleValues, attributes, description, skills } from '../customData.json';
 
 export default class SavageSheet extends Component {
+
     state = {
-        attributes: {
-            Agility: 4,
-            Smarts: 6,
-            Spirit: 0,
-            Strength: 8,
-            Vigor: 8,
-        },
-        skills: {
-            Acedemics: 0,
-            Athletics: 6,
-            Battle: 0,
-            Boating: 4,
-            CommonKnowledge: 0,
-            Driving: 0,
-            Electronics: 0,
-            Faith: 0,
-            Fighting: 8,
-            Focus: 0, 
-            Gambling: 8,
-            Hacking: 0,
-            Healing: 10,
-            Intimidation: 12,
-            Language: 4,
-            Noitce: 4,
-            Occult: 0,
-            Performance: 0,
-            Persuasion: 4,
-            Piloting: 0,
-            Psionics: 0,
-            Repair: 0,
-            Research: 0,
-            Riding: 0,
-            Science: 0,
-            Shooting: 0,
-            Spellcasting: 0,
-            Stealth: 4,
-            Survival: 0,
-            Taunt: 0,
-            Thievery: 0,
-            WeirdScience: 0,
-        },
-        description: {
-            Name: 'John Smith',
-            Race: 'Huamn',
-            Height: '6 2',
-            Weight: '200',
-            Hair: 'brown',
-            Eyes: 'green',
-        }
+        attributes: attributes,
+        description: description,
+        skills: skills,
     }
 
     updateAttributes = e => this.setState({
@@ -80,6 +37,9 @@ export default class SavageSheet extends Component {
     });
 
     render() {
+        console.log('skills');
+        console.log(skills);
+
         return (
             <span>
                 <Grid container spacing={3}>
@@ -99,6 +59,7 @@ export default class SavageSheet extends Component {
                         <SavageAbilities
                             updateAttributes={this.updateAttributes}
                             attributes={this.state.attributes}
+                            possibleValues={possibleValues}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -112,10 +73,11 @@ export default class SavageSheet extends Component {
                         <SavageSkills
                             updateSkills={this.updateSkills}
                             skills={this.state.skills}
+                            possibleValues={possibleValues}
                         />
                     </Grid>
                     <Grid item xs={6}>
-                        <span />
+                        <SavageEdges />
                     </Grid>
                 </Grid>
                 <ul className='sheetColumns'>
