@@ -11,29 +11,30 @@ export default class SavageSkills extends Component {
                 <h2>Skills</h2>
                 <div>
                     {skillEntries.map(skill => {
-                        const key = skill[0]
-                        const value = skill[1]
+                        const skillName = skill[0]
+                        const skillvalue = skill[1]
+
                         return (
-                            <div key={key}>
+                            <div key={skillName}>
                                 <Grid container spacing={3}>
                                     <Grid item xs={4}>
-                                        {key}
+                                        {skillName}
                                     </Grid>
                                     <Grid item xs={2}>
                                         <span />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <select
-                                            name={key}
+                                            name={skillName}
                                             onChange={e => updateSkills(e)}
-                                            defaultValue={value}
+                                            defaultValue={skillvalue}
                                         >
-                                            {possibleValues.map((item, i) =>
+                                            {possibleValues.map((dieType, i) =>
                                                 <option
                                                     key={i}
-                                                    value={item}
+                                                    value={dieType}
                                                 >
-                                                    {item}
+                                                    {dieType}
                                                 </option>)}
                                         </select>
                                     </Grid>
