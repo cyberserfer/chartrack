@@ -11,3 +11,5 @@ var server = app.listen(8067, function (){
 
     console.log("Example app listing at http://%s:%s", host, port)
 })
+
+//node server.js from command line to start
