@@ -22,6 +22,10 @@ export default class SavageSheet extends Component {
         this.updateMaxEncumberance = this.updateMaxEncumberance.bind(this);
     }
 
+    componentDidMount() {
+        this.updateMaxEncumberance();
+    }
+
     updateMaxEncumberance() {
         let newVal
         let evalStrength = parseInt(this.state.attributes.Strength)
