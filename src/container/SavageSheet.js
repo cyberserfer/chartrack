@@ -5,7 +5,7 @@ import SavageDerivedStats from '../component/SavageDerivedStats';
 import Grid from '@material-ui/core/Grid';
 import SavageDescription from '../component/SavageDescription';
 import SavageEdges from '../component/SavageEdges';
-import { possibleValues, attributes, description, skills } from '../customData.json';
+import { possibleValues, attributes, description, skills } from '../data/customData.json';
 
 export default class SavageSheet extends Component {
 

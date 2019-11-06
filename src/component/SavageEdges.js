@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
-import { Edges } from '../customData.json';
-
-
+import { Edges } from '../data/customData.json';
 
 export default class SavageEdges extends Component {
     // const { updateEdges, edges } = this.props

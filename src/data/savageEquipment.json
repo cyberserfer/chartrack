@@ -1,0 +1,50 @@
+{
+    "Double-Barrel": {
+        "rangeshort": 12,
+        "rangemedium": 24,
+        "rangelong": 48,
+        "damage": "1–3d6",
+        "ap": "—",
+        "rof": 1,
+        "shots": 2,
+        "minstrength": "d6",
+        "weight": 11,
+        "cost": 150
+    },
+    "Pump Action": {
+        "rangeshort": 12,
+        "rangemedium": 24,
+        "rangelong": 48,
+        "damage": "1–3d6",
+        "ap": "—",
+        "rof": 1,
+        "shots": 6,
+        "minstrength": "d4",
+        "weight": 8,
+        "cost": 150
+    },
+    "Sawed-Off DB": {
+        "rangeshort": 5,
+        "rangemedium": 10,
+        "rangelong": 20,
+        "damage": "1–3d6",
+        "ap": "—",
+        "rof": 1,
+        "shots": 2,
+        "minstrength": "d4",
+        "weight": 6,
+        "cost": 150
+    },
+    "Streetsweeper": {
+        "rangeshort": 12,
+        "rangemedium": 24,
+        "rangelong": 48,
+        "damage": "1–3d6",
+        "ap": "—",
+        "rof": 1,
+        "shots": 12,
+        "minstrength": "d6",
+        "weight": 10,
+        "cost": 450
+    }
+}
