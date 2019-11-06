@@ -8,19 +8,52 @@ import SavageEdges from '../component/SavageEdges';
 import { possibleValues, attributes, description, skills } from '../data/customData.json';
 
 export default class SavageSheet extends Component {
+    constructor(props) {
+        super(props);
 
-    state = {
-        attributes: attributes,
-        description: description,
-        skills: skills,
+        this.state = {
+            attributes: attributes,
+            description: description,
+            skills: skills,
+            derived: {
+                maxEncum: 0
+            }
+        }
+
+        this.updateAttributes = this.updateAttributes.bind(this);
+        this.updateMaxEncumberance = this.updateMaxEncumberance.bind(this);
     }
 
-    updateAttributes = e => this.setState({
-        attributes: {
-            ...this.state.attributes,
-            [e.target.name]: e.target.value
+    updateMaxEncumberance() {
+        console.log("updateMaxEncum");
+        console.log(this.state.attributes.Strength);
+
+        switch (this.state.attributes.Strength) {
+            case 4:
+                this.setState({ derived: { ...this.state.derived, maxEncum: 20 } })
+                break;
+            case 6:
+                this.setState({ derived: { ...this.state.derived, maxEncum: 40 } })
+                break;
+            case 8:
+                this.setState({ derived: { ...this.state.derived, maxEncum: 60 } })
+                break;
+            case 10:
+                this.setState({ derived: { ...this.state.derived, maxEncum: 80 } })
+                break;
+            case 12:
+                this.setState({ derived: { ...this.state.derived, maxEncum: 100 } })
+                break;
+            default:
+                this.setState({ derived: { ...this.state.derived, maxEncum: "error" } })
         }
-    });
+    }
+
+    updateAttributes(e) {
+        this.setState({ attributes: { ...this.state.attributes, [e.target.name]: e.target.value } })
+        this.updateMaxEncumberance()
+    }
+
 
     updateSkills = e => this.setState({
         skills: {
@@ -37,8 +70,6 @@ export default class SavageSheet extends Component {
     });
 
     render() {
-        console.log('skills');
-        console.log(skills);
 
         return (
             <span>
