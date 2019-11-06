@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 export default class SavageAbilities extends Component {
 
     render() {
-        const { updateAttributes, attributes, possibleValues } = this.props
+        const { updateAttributes, attributes, possibleValues, updateMaxEncumberance } = this.props
         const atts = Object.entries(attributes)
         return (
             <div>
@@ -25,7 +25,9 @@ export default class SavageAbilities extends Component {
                                     <Grid item xs={7}>
                                         <select
                                             name={key}
-                                            onChange={e => updateAttributes(e)}
+                                            onChange={(e) => {
+                                                updateAttributes(e); updateMaxEncumberance();
+                                            }}
                                             defaultValue={value}
                                         >
                                             {possibleValues.map((item, i) =>

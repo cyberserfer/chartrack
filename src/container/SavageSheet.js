@@ -15,9 +15,7 @@ export default class SavageSheet extends Component {
             attributes: attributes,
             description: description,
             skills: skills,
-            derived: {
-                maxEncum: 0
-            }
+            derived: {}
         }
 
         this.updateAttributes = this.updateAttributes.bind(this);
@@ -25,33 +23,39 @@ export default class SavageSheet extends Component {
     }
 
     updateMaxEncumberance() {
-        console.log("updateMaxEncum");
-        console.log(this.state.attributes.Strength);
+        let newVal
+        let evalStrength = parseInt(this.state.attributes.Strength)
+        console.log('val of Strength in updateMaxEncumbrance')
+        console.log(this.state.attributes.Strength)
 
-        switch (this.state.attributes.Strength) {
+        switch (evalStrength) {
             case 4:
-                this.setState({ derived: { ...this.state.derived, maxEncum: 20 } })
+                newVal = 20
                 break;
             case 6:
-                this.setState({ derived: { ...this.state.derived, maxEncum: 40 } })
+                newVal = 40
                 break;
             case 8:
-                this.setState({ derived: { ...this.state.derived, maxEncum: 60 } })
+                newVal = 60
                 break;
             case 10:
-                this.setState({ derived: { ...this.state.derived, maxEncum: 80 } })
+                newVal = 80
                 break;
             case 12:
-                this.setState({ derived: { ...this.state.derived, maxEncum: 100 } })
+                newVal = 100
                 break;
             default:
-                this.setState({ derived: { ...this.state.derived, maxEncum: "error" } })
+                newVal = 0
         }
+        console.log('newVal')
+        console.log(newVal)
+        this.setState({ derived: { ...this.state.derived, maxEncum: newVal } })
+
     }
 
     updateAttributes(e) {
-        this.setState({ attributes: { ...this.state.attributes, [e.target.name]: e.target.value } })
-        this.updateMaxEncumberance()
+        this.setState({ attributes: { ...this.state.attributes, [e.target.name]: e.target.value } }, this.updateMaxEncumberance);
+
     }
 
 
@@ -91,6 +95,8 @@ export default class SavageSheet extends Component {
                             updateAttributes={this.updateAttributes}
                             attributes={this.state.attributes}
                             possibleValues={possibleValues}
+                            updateMaxEncumberance={this.updateMaxEncumberance}
+
                         />
                     </Grid>
                     <Grid item xs={6}>
