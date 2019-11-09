@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-export default class SavageDescription extends Component {
-
-  render() {
-    const { updateDescription, description } = this.props
-
-    return (
+const SavageDescription = ({ updateDescription, description } = this.props) => (
       <div>
         <h2> Character Description</h2>
         <Grid container spacing={3}>
@@ -80,6 +75,6 @@ export default class SavageDescription extends Component {
           </Grid>
         </Grid>
       </div>
-    )
-  }
-}
+)
+
+export default SavageDescription; 

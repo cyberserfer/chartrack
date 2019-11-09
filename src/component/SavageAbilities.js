@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-export default class SavageAbilities extends Component {
-
-    render() {
-        const { updateAttributes, attributes, possibleValues, updateMaxEncumberance } = this.props
-        const atts = Object.entries(attributes)
-        return (
+const SavageAbilities = ({ updateAttributes, attributes, possibleValues, updateMaxEncumberance } = this.props) => (
             <div>
                 <h2>Attributes</h2>
                 <div>
-                    {atts.map(att => {
+                    {Object.entries(attributes).map(att => {
                         const key = att[0]
                         const value = att[1]
                         return (
@@ -45,6 +40,5 @@ export default class SavageAbilities extends Component {
                     })}
                 </div>
             </div>
-        );
-    }
-}
+)
+export default SavageAbilities;

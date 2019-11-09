@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-export default class SavageSkills extends Component {
-
-    render() {
-        const { updateSkills, skills, possibleValues } = this.props
-        const skillEntries = Object.entries(skills)
-        return (
+const SavageSkills = ({ updateSkills, skills, possibleValues } = this.props) => (
             <div>
                 <h2>Skills</h2>
                 <div>
-                    {skillEntries.map(skill => {
+                    {Object.entries(skills).map(skill => {
                         const skillName = skill[0]
                         const skillvalue = skill[1]
 
@@ -44,6 +39,5 @@ export default class SavageSkills extends Component {
                     })}
                 </div>
             </div>
-        );
-    }
-}
+)
+export default SavageSkills;
