@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Edges } from '../data/customData.json.js';
+import { Edges } from '../data/customData.json';
 
 const SavageEdges = props => (
 	<div>
