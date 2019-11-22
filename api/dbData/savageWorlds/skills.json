@@ -1,5 +1,6 @@
 { 
-    "savageWorlds":[ 
+   "game":"SavageWorlds",
+    "skills":[ 
        { 
           "name":"Boating",
           "attribute":"agility"
