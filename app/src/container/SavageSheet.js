@@ -99,7 +99,7 @@ export default class SavageSheet extends Component {
 
   render() {
     console.log(this.state.currentEdges);
-    console.log('edges object');
+    console.log('edges list object');
     console.log(edges);
     return (
       <>
@@ -139,7 +139,7 @@ export default class SavageSheet extends Component {
           <Grid item xs={6}>
             <SavageEdges
               currentEdges={this.state.currentEdges}
-              edges={edges}
+              edgesList={edges}
             />
           </Grid>
         </Grid>
