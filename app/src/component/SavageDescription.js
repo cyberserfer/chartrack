@@ -79,8 +79,8 @@ const SavageDescription = ({ updateDescription, description }) => (
 )
 
 SavageDescription.propTypes = {
-  updateDescription: PropTypes.obj,
-  description: PropTypes.obj
+  updateDescription: PropTypes.object,
+  description: PropTypes.object
 }
 
 export default SavageDescription
