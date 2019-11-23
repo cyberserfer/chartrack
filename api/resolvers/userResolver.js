@@ -1,5 +1,14 @@
 const User = require('../models/User');
+const Character = require('../models/Character');
+const { UserInputError } = require('apollo-server');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const createToken = async (user, secret, expiresIn) => {
+	const { email } = user;
+	return await jwt.sign({ email }, secret, { expiresIn });
+};
+
 
 module.exports = {
 	Query: {
@@ -14,29 +23,37 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addUser: async (parent, args) => {
+		signUp: async (parent, args, { secret }) => {
 			const { email, password } = args;
 
 			const hashedPassword = bcrypt.hashSync(password, 10);
 			const user = new User({ email, password: hashedPassword });
-			const createdUser = await user.save();
-
-			return createdUser;
+			const createdUser = await user.save();			
+			return { token: createToken(createdUser, secret, '30d') };
 		},
-		logIn: async (parent, args) => {
+		signIn: async (parent, args, { secret }) => {
 			const { email, password } = args;
-			const user = await User.findOne({ email });
-			if (!user) return new Error('Incorrect username or password');
-			const validPass = await bcrypt.compare(password, user.password);
-			if (!validPass) return new Error('Incorrect username or password');
-			return user;
-		},
-		removeUser: async (parent, args) => {
-			const { email } = args;
 
-			const removed = await User.findOneAndRemove({ email });
-			if (!removed) return new Error('Email not found');
-			return removed;
+			const user = await User.findOne({ email });
+
+			if (!user) {
+				throw new UserInputError('Email or password are incorrect.');
+			}
+
+			const validPass = await bcrypt.compare(password, user.password);
+			if (!validPass) {
+				throw new UserInputError('Email or password are incorrect.');
+			}
+
+			return { token: createToken(user, secret, '30d') };
+		},		
+	},
+	User: {
+		characters: (user, args) => {
+			return Character.find({ userId: user.email });
 		}
 	}
 };
+
+
+	
