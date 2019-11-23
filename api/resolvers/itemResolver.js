@@ -2,20 +2,18 @@ const Item = require('../models/Item');
 
 module.exports = {
 	Query: {
-		items: async (parent, args) => {
+		getItems: async () => {
 			const item = await Item.find({});
 			if (!item) return new Error('Item not found');
 			return item;
-		}
+        },
+        getItemById: async (_, { _id}) => {
+            const item= await Item.find(_id);
+			if (!item) return new Error('Savage Worlds character sheet not found');
+			return item;
+        }
 	},
 	Mutation: {
-		addItem: async (parent, args) => {
-			const { type, power } = args;
-
-			const item = new Item({ type, power });
-			const added = await item.save();
-
-			return added;
-		}
+		addItem: async (_, args) => await new Item(args).save()
 	}
 };
