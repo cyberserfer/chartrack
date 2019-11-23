@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 const userSchema = require('./userSchema');
 const savageWorldsSchema = require('./savageWorldsSchema');
+const characterSchema = require('./characterSchema');
 
 
 const baseSchema = gql`
@@ -15,4 +16,4 @@ const baseSchema = gql`
 	}
 `;
 
-module.exports = [baseSchema, userSchema, savageWorldsSchema];
+module.exports = [baseSchema, userSchema, savageWorldsSchema, characterSchema];

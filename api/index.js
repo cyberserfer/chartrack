@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const { mongooseConnect } = require('./models');
 
 const typeDefs = require('./schemas');
@@ -9,9 +10,30 @@ const resolvers = require('./resolvers');
 
 const app = express();
 
+const getMe = async req => {
+	let token = req.headers.authorization;
+
+	if (token) {
+		token = token.replace('Bearer ', '');
+		try {
+			return await jwt.verify(token, process.env.SECRET);
+		} catch (error) {
+			throw new AuthenticationError('Your session has expired. Please sign in again.');
+		}
+	}
+};
+
 const server = new ApolloServer({
 	typeDefs,
-	resolvers
+	resolvers,
+	context: async ({ req }) => {
+		const me = await getMe(req);
+
+		return {			
+			me,
+			secret: process.env.SECRET
+		};
+	},
 });
 
 const port = 8000;
