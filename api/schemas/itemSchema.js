@@ -2,14 +2,42 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
 	extend type Query {
-		items: [Item!]
+        getItems: [Item!]
+        getItemById(_id: ID): Item!
 	}
 	extend type Mutation {
-		addItem(type: String!, power: Int!): Item!
+		addItem(
+            armor: Number,
+            ap: Number,
+            cost: Number,
+            cover: Number,
+            damage: String,
+            effects: [Object],
+            minimumStrength: String,
+            name: String!,
+            notes: String,
+            parry: Number,
+            range: String,
+            rof: Number,
+            shots: Number,
+            weight: Number,
+        ): Item!
 	}
 	type Item {
-		id: ID!
-		type: String
-		power: Int
+        _id: ID!
+        armor: Number,
+        ap: Number,
+        cost: Number,
+        cover: Number,
+        damage: String,
+        effects: [Object],
+        minimumStrength: String,
+        name: String!,
+        notes: String,
+        parry: Number,
+        range: String,
+        rof: Number,
+        shots: Number,
+        weight: Number,
 	}
 `;
