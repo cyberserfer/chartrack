@@ -1,4 +1,4 @@
-const SavageWorld = require('../models/SavageWorlds');
+const SavageWorld = require('../models/savageWorlds');
 
 module.exports = {
 	Query: {
