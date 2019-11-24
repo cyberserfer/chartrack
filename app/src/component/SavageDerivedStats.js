@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SavageDerivedStats = ({ baseStats } = this.props) => (
+const SavageDerivedStats = ({ baseStats } ) => (
   <div>
     <h2>Derived Stats</h2>
     <div>
