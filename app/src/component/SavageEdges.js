@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Button, Tooltip } from '@material-ui/core'
 
 
-const SavageEdges = (currentEdges, edgesList) => (
+const SavageEdges = ({currentEdges, edgesList}) => (
 
 	< div >
 		{console.log('edges inside SavageEdges')}
@@ -13,15 +13,13 @@ const SavageEdges = (currentEdges, edgesList) => (
 
 
 		<Grid container spacing={3}>
+		{currentEdges.map((edge) =>
 			<Grid item xs={12}>
-				<span>
-					<div>{edgesList.Alertness.name}</div>
-					{/* <span>{edges.Alertness.name}</span>
-					<Tooltip title={`Description: ${edges.Alertness.description}`}>
+					{edgesList[edge].name}
+					<Tooltip title={`Description: ${edgesList[edge].description}`}>
 						<Button>TT</Button>
-					</Tooltip> */}
-				</span>
-			</Grid>
+					</Tooltip>
+			</Grid>)}
 		</Grid>
 
 	</div >

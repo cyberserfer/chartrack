@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
-const SavageSkills = ({ updateSkills, skills, possibleValues } = this.props) => (
+const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
   <div>
     <h2>Skills</h2>
     <div>
