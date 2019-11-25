@@ -11,6 +11,7 @@ const SavageAbilities = ({ attributes, possibleValues, updateAttributes }) => (
           const objValue = attrib[1]
           return (
             <List 
+              key={objName}
               objName={objName}
               objValue={objValue}
               possibleValues={possibleValues} 

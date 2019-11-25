@@ -1,5 +1,6 @@
 import React from 'react'
 import List from '../shared/List'
+import PropTypes from 'prop-types'
 
 const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
   <div>
@@ -10,6 +11,7 @@ const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
           const objValue = skill[1]
           return (
             <List 
+              key={objName}
               objName={objName}
               objValue={objValue}
               possibleValues={possibleValues} 
@@ -20,4 +22,10 @@ const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
     </div>
   </div>
 )
+SavageSkills.propTypes = {
+  updateSkills: PropTypes.func,
+  skills: PropTypes.object,
+  possibleValues: PropTypes.array
+}
+
 export default SavageSkills

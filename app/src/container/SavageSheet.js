@@ -17,7 +17,9 @@ export default class SavageSheet extends Component {
       attributes: attributes,
       description: description,
       skills: skills,
-      derived: {},
+      derived: {
+        maxEncum: 20
+      },
       currentEdges: ["Alertness", "Aristocrat", "Berserk"]
     }
 
@@ -98,9 +100,7 @@ export default class SavageSheet extends Component {
   }
 
   render() {
-    console.log(this.state.currentEdges);
-    console.log('edges list object');
-    console.log(edges);
+
     return (
       <>
         <Grid container spacing={3}>

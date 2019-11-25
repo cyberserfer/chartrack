@@ -2,8 +2,6 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
 const List = ({objName, objValue, possibleValues, funcOne }) => {
-	console.log('objName');
-	console.log(objName);
 		
         return (
 			<div key={objName}>
@@ -16,10 +14,10 @@ const List = ({objName, objValue, possibleValues, funcOne }) => {
               </Grid>
               <Grid item xs={6}>
 			<select
-			name={objName}
-			onChange={e => funcOne(e)}
-			defaultValue={objValue}
-		  >
+				name={objName}
+				onChange={e => funcOne(e)}
+				defaultValue={objValue}
+		  	>
 			{possibleValues.map((dieType, i) =>
 			  <option
 				key={i}
