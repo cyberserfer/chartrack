@@ -13,19 +13,11 @@ const List = ({objName, objValue, possibleValues, funcOne }) => {
 						<span />
 					</Grid>
 					<Grid item xs={6}>
-					<select
-						name={objName}
-						onChange={e => funcOne(e)}
-						defaultValue={objValue}
-					>
+
 					{possibleValues.map((dieType, i) =>
-					<option
-						key={i}
-						value={dieType}
-					>
-						{dieType}
-					</option>)}
-					</select>
+						<button key={i} className={`statdot ${(dieType <= objValue) && ("filled")}`} name={objName} value={dieType} onClick={e => funcOne(e)} ></button>
+					)}
+					
 				</Grid>
             </Grid>
           </div>
