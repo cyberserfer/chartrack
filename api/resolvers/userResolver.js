@@ -9,7 +9,6 @@ const createToken = async (user, secret, expiresIn) => {
 	return await jwt.sign({ email }, secret, { expiresIn });
 };
 
-
 module.exports = {
 	Query: {
 		user: async (parent, args) => {
@@ -23,16 +22,16 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		signUp: async (parent, args, { secret }) => {
-			const { email, password } = args;
+		signUp: async (parent, { data }, { secret }) => {
+			const { email, password } = data;
 
 			const hashedPassword = bcrypt.hashSync(password, 10);
 			const user = new User({ email, password: hashedPassword });
-			const createdUser = await user.save();			
+			const createdUser = await user.save();
 			return { token: createToken(createdUser, secret, '30d') };
 		},
-		signIn: async (parent, args, { secret }) => {
-			const { email, password } = args;
+		signIn: async (parent, { data }, { secret }) => {
+			const { email, password } = data;
 
 			const user = await User.findOne({ email });
 
@@ -46,7 +45,7 @@ module.exports = {
 			}
 
 			return { token: createToken(user, secret, '30d') };
-		},		
+		}
 	},
 	User: {
 		characters: (user, args) => {
@@ -54,6 +53,3 @@ module.exports = {
 		}
 	}
 };
-
-
-	
