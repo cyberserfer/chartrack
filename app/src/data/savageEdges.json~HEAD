@@ -1,0 +1,215 @@
+{
+    "Edges": {
+        "Alertness": {
+            "name": "Alertness",
+            "type": "Background",
+            "requirement": [
+                "novice"
+            ],
+            "description": "Not much gets by this hero. The character is very observant and perceptive, and adds +2 to Notice rolls to hear, see, or otherwise senese the world."
+        },
+        "Ambidextrous": {
+            "name": "Ambidextrous",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Agility d8+"
+            ],
+            "description": "Your warrior is as deft with his left hand as he is with his right. He ignores the Off-Hand penalty (see page 104). If holding a weapon in each hand, Ambidextrous characters may stack Parry bonuses (if any) from both weapons."
+        },
+        "Arcane Background": {
+            "name": "Arcane Background",
+            "type": "Background",
+            "requirement": [
+                "novice"
+            ],
+            "description": "Exposure to strange energies, studies at a magical school, or gifts from divine or spiritual entities sometimes grant champions their own powers and abilities. Such events lead to the Arcane Background Edge and the development of supernatural abilities. See Chapter Five for a complete description of Arcane Backgrounds, powers, and how to use them."
+        },
+        "Arcane Resistance": {
+            "name": "Arcane Resistance",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Spirit d8+"
+            ],
+            "description": "Magic and the supernatural hold little sway with this individual. Whether by nature, heritage, or training he’s particularly resistant to magic, psionics, weird science, and other supernatural energies. Arcane skills targeting the hero suffer a −2 penalty (even if cast by allies!) and magical damage is reduced by 2 as well."
+        },
+        "Improved Arcane Resistance": {
+            "name": "Improved Arcane Resistance",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Arcane Resistance"
+            ],
+            "description": "Magic and the supernatural hold little sway with this individual. Whether by nature, heritage, or training he’s particularly resistant to magic, psionics, weird science, and other supernatural energies. Arcane skills targeting the hero suffer a −4 penalty (even if cast by allies!) and magical damage is reduced by 4 as well."
+        },
+        "Aristocrat": {
+            "name": "Aristocrat",
+            "type": "Background",
+            "requirement": [
+                "novice"
+            ],
+            "description": "This individual was born into privilege or came into it later in life. She may or may not have money (the Rich or Filthy Rich Edge), but she still walks in the elite social circles of the setting. Aristocrats add +2 to Persuasion when Networking (see page 133) with the local elite, captains of industry, nobles, or other aristocrats. They also add +2 to Common Knowledge rolls made to know the etiquette of the upper class, recognize family trees or heraldry, or recall gossip concerning others of their station."
+        },
+        "Attractive": {
+            "name": "Attractive",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Vigor d6+"
+            ],
+            "description": "It’s no secret people are more willing to help those they find physically attractive. Your character adds +1 to Performance and Persuasion rolls if the target is attracted to his general type (gender, sex, species, etc.)."
+        },
+        "Very Attractive": {
+            "name": "Very Attractive",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Attractive"
+            ],
+            "description": "Your hero is drop-dead gorgeous. He increases his Performance and Persuasion bonus to +2."
+        },
+        "Berserk": {
+            "name": "Berserk",
+            "type": "Background",
+            "requirement": [
+                "novice"
+            ],
+            "description": "Berserkers become wild and nearly uncontrollable when the “red rage” takes them, but they are deadly killing machines as well! Immediately after suffering a Wound or a Shaken result (from physical damage only), your hero must make a Smarts roll or go Berserk. She can voluntarily fail this check if she likes.\nGoing Berserk has the following effects:\nFURY: The character’s Strength increases a die type and every melee attack must be a Wild Attack (see page 109). She cannot use any skills that require wit or concentration (GM’s call). She may scream out threats and use Intimidation, for example.\nENRAGED: Adrenaline and rage fuel the berserker’s muscles, adding +2 to Toughness. She ignores one level of Wound penalties (this stacks with any other abilities that reduce Wound penalties).\nRECKLESS ABANDON: Anytime a berserker rolls a Critical Failure on a Fighting check, she hits a random target within range of her attack (not the intended target), friend or foe. If there are no applicable targets, the blow simply misses, smashes nearby objects, etc.\nAfter five consecutive rounds of berserk fury, the hero takes a level of Fatigue. At ten rounds, she takes another level of Fatigue and the rage ends. She may also choose to end her rage at any time by making a Smarts −2 roll (as a free action; possibly avoiding Fatigue if she manages to end her rage before it’s incurred!). Start the count anew if she goes berserk again, even in the same battle."
+        },
+        "Brave": {
+            "name": "Brave",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Spirit d6+"
+            ],
+            "description": "Those with this Edge have learned to master their fear, or have dealt with so many horrors they’ve become jaded. These valiant explorers add +2 to Fear checks and subtract 2 from Fear Table results (see page 124)."
+        },
+        "Brawny": {
+            "name": "Brawny",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Strength d6+",
+                "Vigor d6+"
+            ],
+            "description": "Your bruiser is very large or very fit. Her Size increases by +1 (and therefore Toughness by 1) and she treats her Strength as one die type higher when determining Encumbrance (page 67) and Minimum Strength to use armor, weapons, and equipment without a penalty (page 66). Brawny can’t increase a character’s Size above +3."
+        },
+        "Brute": {
+            "name": "Brute",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Strength d6+",
+                "Vigor d6+"
+            ],
+            "description": "Brutes focus on core strength and fitness over coordination and flexibility. They treat Athletics as linked to Strength instead of Agility for purposes of Advancement. The character may also resist Athletics Tests with Strength if she chooses. Finally, Brutes increase the Short Range of any thrown item by +1. Double that for the adjusted Medium Range, and double again for Long Range. If a thrown item’s Range is 3/6/12, for example, a Brute’s Range is 4/8/16."
+        },
+        "Charismatic": {
+            "name": "Charismatic",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Spirit d8+"
+            ],
+            "description": "Your hero is likable for some reason. She may be trustworthy or kind, or might just exude confidence and goodwill. You get one free reroll on Persuasion rolls."
+        },
+        "Elan": {
+            "name": "Elan",
+            "type": "Background",
+            "requirement": [
+                "novice",
+                "Spirit d8+"
+            ],
+            "description": "Elan means energy or spirit. Those who have it rise to the occasion when the going gets toughest. When you spend a Benny to reroll a Trait, add +2 to the total. The bonus applies only when rerolling. It doesn’t apply to damage rolls (since they’re not Trait rolls), nor does it apply to Soak rolls unless you’re using another Benny to reroll the Vigor check."
+        },
+        "Fame": {
+            "name": "Elan",
+            "type": "Background",
+            "requirement": [
+                "novice"
+            ],
+            "description": "Your character is a minor celebrity of some sort. She might be a popular bard known in a particular fiefdom, a minor rock star, or a beloved B-movie actor. She makes double the normal fee when performing for pay (see Performance, page 32). She can also use her celebrity to add +1 to Persuasion rolls if a target is friendly and knows who she is (a Common Knowledge roll modified by how likely the individual is to know the celebrity). The downside of Fame is that the individual is often recognized, others frequently want something from her, she may be followed by fans or admirers, or she may not be able to shirk obligations, performances, or other duties without causing trouble for herself."
+        },
+        "Famous": {
+            "name": "Famous",
+            "type": "Background",
+            "requirement": [
+                "Seasoned",
+                "Fame"
+            ],
+            "description": "Your hero is truly famous. She’s wellknown in a large circle such as a country, a large industry, or a popular medium (film or television, the music industry). She makes 5 × the normal fee when performing and adds +2 to Persuasion rolls when influencing friendly individuals who know who she is. The price is higher for the truly Famous, too, with more demands on her time, obligations, rivals, scandals, and an inability to operate in crowds without being recognized."
+        },
+        "Fast Healer": {
+            "name": "Fast Healer",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Vigor d8+"
+            ],
+            "description": "Those with this blessing add +2 to Vigor rolls for natural healing, and check every three days instead of five (see Healing, page 96)."
+        },
+        "Fleet-Footed": {
+            "name": "Fleet-Footed",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Vigor d8+"
+            ],
+            "description": "The hero’s Pace is increased by +2 and his running die increases one step (from d6 to d8, for example)."
+        },
+        "Linguist": {
+            "name": "Linguist",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Smarts d6+"
+            ],
+            "description": "This world-traveler has an ear for languages. She begins play knowing half her Smarts die type in different Language skills of her choice at d6 (see the Language skill on page 31)."
+        },
+        "Luck": {
+            "name": "Luck",
+            "type": "Background",
+            "requirement": [
+                "Novice"
+            ],
+            "description": "The adventurer seems to be blessed by fate, karma, the gods, or whatever external forces he believes in (or believe in him!). He draws one extra Benny at the beginning of each game session, allowing him to succeed at important tasks more often than most, and survive incredible dangers."
+        },
+        "Great Luck": {
+            "name": "Great Luck",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Luck"
+            ],
+            "description": "The player draws two extra Bennies instead of one at the start of each session."
+        },
+        "Quick": {
+            "name": "Quick",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Agility d8+"
+            ],
+            "description": "Quick characters have lightning-fast reflexes and a cool head. Whenever you are dealt an Action Card of Five or lower, you may discard it and draw again until you get a card higher than Five. Characters with both the Level Headed and Quick Edges first draw their additional card and choose which to take. If that card is a Five or less, the Quick Edge may be used to draw a replacement until it’s Six or higher."
+        },
+        "Rich": {
+            "name": "Rich",
+            "type": "Background",
+            "requirement": [
+                "Novice"
+            ],
+            "description": "Whether the individual was born with a silver spoon in his mouth or earned it through hard work, he’s got more money than most. Rich heroes start with three times the normal starting funds for the setting. If a regular income is appropriate for this setting, the hero receives the modern-day equivalent of a $150,000 annual salary."
+        },
+        "Filthy Rich": {
+            "name": "Filthy Rich",
+            "type": "Background",
+            "requirement": [
+                "Novice",
+                "Rich"
+            ],
+            "description": "This fortunate individual is very wealthy. He has five times the starting funds for the setting during character creation and, if appropriate, a yearly income after responsibilities of around $500,000. Even wealthier characters may exist, but unless there’s a game effect it probably shouldn’t matter. This should be worked out with the GM and come with many more assets as well as onerous responsibilities."
+        }
+    }
+}
