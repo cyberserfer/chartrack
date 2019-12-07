@@ -8,7 +8,7 @@ module.exports = {
 			return sheets;
         },
         getCharacterById: async (_, { _id }) => {
-            const sheet= await SavageWorldsCharacterSheet.find(_id);
+            const sheet = await SavageWorldsCharacterSheet.find(_id);
 			if (!sheet) return new Error('Savage Worlds character sheet not found');
 			return sheet;
         }

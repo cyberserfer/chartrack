@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 const edgeSchema = require('./edgeSchema');
 const hindranceSchema = require('./hindranceSchema');
 const itemSchema = require('./itemSchema');
-const powerSchema = require('./itemSchema');
+const powerSchema = require('./powerSchema');
 const savageWorldsCharacterSheetchema = require('./savageWorldsCharacterSheetSchema');
 const userSchema = require('./userSchema');
 

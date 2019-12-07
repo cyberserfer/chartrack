@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Skill = {
     baseAttribute: String,
     name: String,
     value: Number,
-},
+}
 
 const SavageWorldsCharacterSheet = new Schema({
     details: {
@@ -15,7 +15,7 @@ const SavageWorldsCharacterSheet = new Schema({
         name: String,
         race: {
             name: String,
-            effects: [Object]
+            effects: [String]
         },
     },
     startingPoints: {
@@ -86,4 +86,4 @@ const SavageWorldsCharacterSheet = new Schema({
     items: [{ type: mongoose.Schema.ObjectId, ref: 'Item' }],
     powers: [{ type: mongoose.Schema.ObjectId, ref: 'Power' }],
 });
-export default mongoose.model('SavageWorldsCharacterSheet', SavageWorldsCharacterSheet);
+module.exports = mongoose.model('SavageWorldsCharacterSheet', SavageWorldsCharacterSheet);
