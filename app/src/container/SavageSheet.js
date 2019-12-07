@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import SavageDescription from "../component/SavageDescription"
 import SavageEdges from "../component/SavageEdges"
+import UserDetails from "../component/UserDetails"
 import {
   possibleValues,
   attributes,
@@ -112,6 +113,7 @@ export default class SavageSheet extends Component {
   render() {
     return (
       <>
+        <UserDetails />
         <Grid container spacing={3}>
           <Grid item xs={1} />
           <Grid item xs={11}>

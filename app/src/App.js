@@ -6,7 +6,6 @@ import {
   Redirect
 } from "react-router-dom"
 import "./App.css"
-import AppHeader from "./container/AppHeader"
 import SavageSheet from "./container/SavageSheet"
 import LandingContainer from "./container/LandingContainer"
 import { ApolloProvider } from "@apollo/react-hooks"
@@ -22,9 +21,6 @@ export default class App extends Component {
       <ApolloProvider client={client}>
         <Router>
           <div>
-            <header className="App-header">
-              <AppHeader />
-            </header>
             <Switch>
               <Route path="/savageSheet" component={SavageSheet} />
               <Route path="/" component={LandingContainer} />
