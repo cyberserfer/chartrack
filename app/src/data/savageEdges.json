@@ -1,5 +1,5 @@
 {
-    "Edges": {
+    "edges": {
         "Alertness": {
             "name": "Alertness",
             "type": "Background",

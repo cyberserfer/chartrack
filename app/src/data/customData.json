@@ -9,7 +9,7 @@
             "description": "Not much gets by this hero. The character is very observant and perceptive, and adds +2 to Notice rolls to hear, see, or otherwise senese the world."
         }
     },
-    "possibleValues": [0, 4, 6, 8, 10, 12],
+    "possibleValues": [4, 6, 8, 10, 12],
 
     "attributes": {
         "Agility": 4,
