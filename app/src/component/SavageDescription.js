@@ -79,7 +79,7 @@ const SavageDescription = ({ updateDescription, description }) => (
 )
 
 SavageDescription.propTypes = {
-  updateDescription: PropTypes.object,
+  updateDescription: PropTypes.func,
   description: PropTypes.object
 }
 
