@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
-import SavageAbilities from '../component/SavageAbilities'
-import SavageSkills from '../component/SavageSkills'
-import SavageDerivedStats from '../component/SavageDerivedStats'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import SavageDescription from '../component/SavageDescription'
-import SavageEdges from '../component/SavageEdges'
-import { possibleValues, attributes, description, skills } from '../data/customData.json'
-import { edges } from '../data/savageEdges.json'
+import React, { Component } from "react"
+import SavageAbilities from "../component/SavageAbilities"
+import SavageSkills from "../component/SavageSkills"
+import SavageDerivedStats from "../component/SavageDerivedStats"
+import Grid from "@material-ui/core/Grid"
+import Button from "@material-ui/core/Button"
+import SavageDescription from "../component/SavageDescription"
+import SavageEdges from "../component/SavageEdges"
+import {
+  possibleValues,
+  attributes,
+  description,
+  skills
+} from "../data/customData.json"
+import { edges } from "../data/savageEdges.json"
 
 export default class SavageSheet extends Component {
   constructor(props) {
@@ -59,7 +64,12 @@ export default class SavageSheet extends Component {
 
   updateAttributes(e) {
     this.setState(
-      { attributes: { ...this.state.attributes, [e.target.name]: e.target.value } },
+      {
+        attributes: {
+          ...this.state.attributes,
+          [e.target.name]: e.target.value
+        }
+      },
       this.updateMaxEncumberance
     )
   }
@@ -70,7 +80,7 @@ export default class SavageSheet extends Component {
         ...this.state.skills,
         [e.target.name]: e.target.value
       }
-    });
+    })
 
   updateDescription = e =>
     this.setState({
@@ -78,35 +88,36 @@ export default class SavageSheet extends Component {
         ...this.state.description,
         [e.target.name]: e.target.value
       }
-    });
+    })
 
   async handleClick() {
     const writeBody = JSON.stringify(this.state)
     console.log(writeBody)
     try {
-      const response = await fetch('http://localhost:8080/write', {
-        method: 'put',
+      const response = await fetch("http://localhost:8080/write", {
+        method: "put",
         body: writeBody,
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json"
         }
       })
       const json = await response.json()
-      console.log('Success:', JSON.stringify(json))
+      console.log("Success:", JSON.stringify(json))
     } catch (error) {
-      console.error('Error:', error)
+      console.error("Error:", error)
     }
   }
 
   render() {
-
     return (
       <>
         <Grid container spacing={3}>
           <Grid item xs={1} />
           <Grid item xs={11}>
-            <Button onClick={() => this.handleClick()}>Save Character Info</Button>
+            <Button onClick={() => this.handleClick()}>
+              Save Character Info
+            </Button>
             <SavageDescription
               updateDescription={this.updateAttributes}
               description={this.state.description}
@@ -143,7 +154,7 @@ export default class SavageSheet extends Component {
             />
           </Grid>
         </Grid>
-        <ul className='sheetColumns'>
+        <ul className="sheetColumns">
           <li />
         </ul>
       </>
