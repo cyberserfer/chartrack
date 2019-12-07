@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import SavageAbilities from '../component/SavageAbilities'
-import SavageSkills from '../component/SavageSkills'
-import SavageDerivedStats from '../component/SavageDerivedStats'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import SavageDescription from '../component/SavageDescription'
-import SavageEdges from '../component/SavageEdges'
-import { possibleValues, attributes, description, skills } from '../data/customData.json'
+import React, { Component } from 'react';
+import SavageAbilities from '../component/SavageAbilities';
+import SavageSkills from '../component/SavageSkills';
+import SavageDerivedStats from '../component/SavageDerivedStats';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import SavageDescription from '../component/SavageDescription';
+import SavageEdges from '../component/SavageEdges';
+import { possibleValues, attributes, description, skills } from '../data/customData.json';
 
 export default class SavageSheet extends Component {
   constructor (props) {

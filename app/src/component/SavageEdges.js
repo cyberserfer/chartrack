@@ -1,6 +1,6 @@
-import React from 'react'
-import { Grid, Button, Tooltip } from '@material-ui/core'
-import { Edges } from '../data/customData.json'
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import { Edges } from '../data/customData.json';
 
 const SavageEdges = () => (
   <div>
