@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EdgeSchema = new Schema({
     name: String,
     type: [String],
-    requirements: [Object],
+    requirements: [String],
     description: String,
-    effects: [Object]
+    effects: [String]
 })
 
-export default mongoose.model('Edge', EdgeSchema);
+module.exports = mongoose.model('Edge', EdgeSchema);

@@ -6,7 +6,7 @@ const itemSchema = new mongoose.Schema({
     cost: Number,
     cover: Number,
     damage: String,
-    effects: [Object],
+    effects: [String],
     minimumStrength: String,
     name: String,
     notes: String,

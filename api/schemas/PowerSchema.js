@@ -2,28 +2,38 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
 	extend type Query {
-        getPowers(): [Power!]
+        getPowers: [Power!]
         getPowerById(_id: ID): Power!
 	}
 	extend type Mutation {
 		addPower(
-            duration: Number,
-            modifiers: [Object],
+            duration: Int,
+            modifiers: [String],
             name: String!,
-            powerPoints: Number,
+            powerPoints: Int,
             range: String,
             rank: String,
-            trappings: [Object]
+            trappings: [String]
         ): Power!
 	}
 	type Power {
         _id: ID!
-        duration: Number,
-        modifiers: [Object],
+        duration: Int,
+        modifiers: [String],
         name: String,
-        powerPoints: Number,
+        powerPoints: Int,
         range: String,
         rank: String,
-        trappings: [Object]
+        trappings: [String]
+    }
+    
+    input PowerInput {
+        duration: Int,
+        modifiers: [String],
+        name: String,
+        powerPoints: Int,
+        range: String,
+        rank: String,
+        trappings: [String]
 	}
 `;
