@@ -12,8 +12,19 @@ import {
   skills
 } from '../data/customData.json'
 import { edges } from '../data/savageEdges.json'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+const GET_CHARACTER = gql`
+  query getCharacter($id: String!) {
+      character(id: $id) {
+        id
+      }
+    }
+`
 
 export default function CharacterSheet (props) {
+  const { data, loading, error } = useQuery(GET_CHARACTER)
   const [state, setState] = useState({
     attributes: attributes,
     description: description,
@@ -65,7 +76,12 @@ export default function CharacterSheet (props) {
         [e.target.name]: e.target.value
       }
     })
-
+  if (loading) {
+    return <h1>CALM DOWN YOUR CHARACTER IS LOADING!</h1>
+  }
+  if (error) {
+    return <h1>FUCK THERE WAS AN ERROR!!!</h1>
+  }
   return (
     <>
       <Grid container spacing={3}>
