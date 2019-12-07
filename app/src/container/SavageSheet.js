@@ -23,8 +23,12 @@ const GET_CHARACTER = gql`
     }
 `
 
+const charId = window.location.pathname.split('/')[2]
+console.log(charId)
+
 export default function CharacterSheet (props) {
-  const { data, loading, error } = useQuery(GET_CHARACTER)
+  // TODO: use data in the component when i can actually call data
+  const { data, loading, error } = useQuery(GET_CHARACTER, { variables: { id: charId } })
   const [state, setState] = useState({
     attributes: attributes,
     description: description,
