@@ -2,18 +2,18 @@ const Hindrance = require('../models/Hindrance');
 
 module.exports = {
 	Query: {
-		getHindrances: async () => {
-			const hindrance = await Hindrance.find({});
+		hindrance: async (_, { input }) => {
+			const hindrance = await Hindrance.findOne(input);
 			if (!hindrance) return new Error('hindrance not found');
 			return hindrance;
         },
-        getHindranceById: async (_, { _id}) => {
-            const hindrance = await Hindrance.find(_id);
-			if (!hindrance) return new Error('Hindrance not found');
-			return hindrance;
+        hindrances: async (_, { input }) => {
+            const hindrances = await Hindrance.find(input);
+			if (!hindrances) return new Error('Hindrances not found');
+			return hindrances;
         }
 	},
 	Mutation: {
-		addHindrance: async (_, args) => await new Hindrance(args).save()
+		addHindrance: async (_, { input }) => await new Hindrance(input).save()
 	}
 };

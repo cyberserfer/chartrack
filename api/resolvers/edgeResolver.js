@@ -2,18 +2,18 @@ const Edge = require('../models/Edge');
 
 module.exports = {
 	Query: {
-		getEdges: async () => {
-			const edge = await Edge.find({});
-			if (!edge) return new Error('Edges not found');
-			return edge;
-        },
-        getEdgeById: async (_, { _id}) => {
-            const edge= await Edge.find(_id);
+        edge: async (_, { input }) => {
+            const edge = await Edge.findOne(input);
 			if (!edge) return new Error('Edge not found');
 			return edge;
+        },
+        edges: async (_, { input }) => {
+			const edges = await Edge.find(input);
+			if (!edges) return new Error('Edges not found');
+			return edges;
         }
 	},
 	Mutation: {
-		addEdge: async (_, args) => await new Edge(args).save()
+		addEdge: async (_, { input }) => await new Edge(input).save()
 	}
 };

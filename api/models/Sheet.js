@@ -8,6 +8,7 @@ const Skill = {
 }
 
 const SavageWorldsCharacterSheet = new Schema({
+    userId: Number,
     details: {
         background: String,
         description: String,

@@ -1,11 +1,7 @@
 const { gql } = require('apollo-server-express');
-const fs = require('fs');
 
 module.exports = gql`
-	extend type Query {
-        getCharactersByUserId(userId: ID!): [SavageWorldsCharacterSheet!]
-        getCharacterById(_id: ID): SavageWorldsCharacterSheet!
-    }
+
     type Skill {
         baseAttribute: String,
         name: String,
@@ -145,7 +141,8 @@ module.exports = gql`
         skills: Int
     }
 
-    input SavageWorldsCharacterSheetInput {
+    input SheetInput {
+        userId: Int!
         details: CharacterDetailsInput
         startingPoints: StartingPointsInput
         attributes: AttributesInput
@@ -155,13 +152,9 @@ module.exports = gql`
         items: [ItemInput],
         powers: [PowerInput],
     }
-    
-	extend type Mutation {
-		addSavageWorldsCharacterSheet(SavageWorldsCharacterSheet: SavageWorldsCharacterSheetInput): SavageWorldsCharacterSheet!
-    }
-    
-	type SavageWorldsCharacterSheet {
+    type Sheet {
         _id: ID!
+        userId: Int
         details: CharacterDetails
         startingPoints: StartingPoints
         attributes: Attributes
@@ -170,5 +163,12 @@ module.exports = gql`
         hindrances: [Hindrance],
         items: [Item],
         powers: [Power],
-	}
+    }
+    extend type Query {
+        character(input: SheetInput): Sheet!
+        characters(input: SheetInput): [Sheet!]
+    }
+	extend type Mutation {
+		addSheet(input: SheetInput): Sheet!
+    }
 `;
