@@ -13,11 +13,8 @@ const userSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: 'Please enter a password'
-	},	
-	characters: [{
-		type: mongoose.Schema.ObjectId,
-		ref: 'Character'		
-	}]
+	},
+	sheets: [{ type: mongoose.Schema.ObjectId, ref: 'SavageWorldsCharacterSheet' }]
 });
 
 module.exports = mongoose.model('User', userSchema);

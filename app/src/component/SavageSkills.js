@@ -1,43 +1,31 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
+import List from '../shared/List'
+import PropTypes from 'prop-types'
 
-const SavageSkills = ({ updateSkills, skills, possibleValues } = this.props) => (
+const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
   <div>
     <h2>Skills</h2>
     <div>
       {Object.entries(skills).map(skill => {
-        const skillName = skill[0]
-        const skillvalue = skill[1]
-
-        return (
-          <div key={skillName}>
-            <Grid container spacing={3}>
-              <Grid item xs={4}>
-                {skillName}
-              </Grid>
-              <Grid item xs={2}>
-                <span />
-              </Grid>
-              <Grid item xs={6}>
-                <select
-                  name={skillName}
-                  onChange={e => updateSkills(e)}
-                  defaultValue={skillvalue}
-                >
-                  {possibleValues.map((dieType, i) =>
-                    <option
-                      key={i}
-                      value={dieType}
-                    >
-                      {dieType}
-                    </option>)}
-                </select>
-              </Grid>
-            </Grid>
-          </div>
-        )
+        const objName = skill[0]
+          const objValue = skill[1]
+          return (
+            <List 
+              key={objName}
+              objName={objName}
+              objValue={objValue}
+              possibleValues={possibleValues} 
+              funcOne={updateSkills} 
+            />
+          )
       })}
     </div>
   </div>
 )
+SavageSkills.propTypes = {
+  updateSkills: PropTypes.func,
+  skills: PropTypes.object,
+  possibleValues: PropTypes.array
+}
+
 export default SavageSkills

@@ -1,8 +1,10 @@
 const { gql } = require('apollo-server-express');
+const edgeSchema = require('./edgeSchema');
+const hindranceSchema = require('./hindranceSchema');
+const itemSchema = require('./itemSchema');
+const powerSchema = require('./powerSchema');
+const sheetchema = require('./SheetSchema');
 const userSchema = require('./userSchema');
-const savageWorldsSchema = require('./savageWorldsSchema');
-const characterSchema = require('./characterSchema');
-
 
 const baseSchema = gql`
 	type Query {
@@ -16,4 +18,12 @@ const baseSchema = gql`
 	}
 `;
 
-module.exports = [baseSchema, userSchema, savageWorldsSchema, characterSchema];
+module.exports = [
+	baseSchema,
+	edgeSchema,
+	hindranceSchema,
+	itemSchema,
+	powerSchema,
+	sheetchema,
+	userSchema
+];
