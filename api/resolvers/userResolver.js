@@ -1,12 +1,11 @@
 const User = require('../models/User');
-const Character = require('../models/Character');
 const { UserInputError } = require('apollo-server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const createToken = async (user, secret, expiresIn) => {
-	const { email } = user;
-	return await jwt.sign({ email }, secret, { expiresIn });
+	const { email, _id } = user;
+	return await jwt.sign({ email, _id }, secret, { expiresIn });
 };
 
 module.exports = {
@@ -45,11 +44,6 @@ module.exports = {
 			}
 
 			return { token: createToken(user, secret, '30d') };
-		}
-	},
-	User: {
-		characters: (user, args) => {
-			return Character.find({ userId: user.email });
 		}
 	}
 };
