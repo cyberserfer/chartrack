@@ -19,11 +19,11 @@ const baseSchema = gql`
 `;
 
 module.exports = [
-    baseSchema,
-    edgeSchema,
-    hindranceSchema,
-    itemSchema,
-    powerSchema,
-    sheetchema,
-    userSchema,
-    ];
+	baseSchema,
+	edgeSchema,
+	hindranceSchema,
+	itemSchema,
+	powerSchema,
+	sheetchema,
+	userSchema
+];
