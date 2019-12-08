@@ -2,18 +2,11 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
 	extend type Query {
-        getHindrances: [Hindrance!]
-        getHindranceById(_id: ID): Hindrance!
+        hindrance(input: HindranceInput): Hindrance!
+        hindrances(input: HindranceInput): [Hindrance]!
 	}
 	extend type Mutation {
-		addHindrance(
-            name: String!,
-            type: [String],
-            requirements: [String],
-            description: String,
-            effects: [String]
-            severity: String
-        ): Hindrance!
+		addHindrance(input: HindranceInput): Hindrance!
 	}
 	type Hindrance {
         _id: ID!
@@ -22,15 +15,15 @@ module.exports = gql`
         requirements: [String],
         description: String,
         effects: [String]
-        severity: String
+        severity: String,
     }
     
     input HindranceInput {
         name: String,
-        type: [String],
+        type: String,
         requirements: [String],
         description: String,
-        effects: [String]
-        severity: String
-	}
+        effects: [String],
+        severity: String,
+        }
 `;

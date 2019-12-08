@@ -1,19 +1,19 @@
-const Sheet = require('../models/SavageWorldsCharacterSheet');
+const Sheet = require('../models/Sheet');
 
 module.exports = {
 	Query: {
-		getCharactersByUserId: async (_, { userId }) => {
-			const sheets = await SavageWorldsCharacterSheet.find(_id);
-			if (!sheets) return new Error('No Savage Worlds character sheets found');
-			return sheets;
-        },
-        getCharacterById: async (_, { _id }) => {
-            const sheet = await SavageWorldsCharacterSheet.find(_id);
-			if (!sheet) return new Error('Savage Worlds character sheet not found');
+		character: async (_, { input }) => {
+			const sheet = await Sheet.findOne(input);
+			if (!sheet) return new Error('No Savage Worlds character sheet found');
 			return sheet;
+        },
+        characters: async (_, { input }) => {
+            const sheets = await Sheet.find(input);
+			if (!sheets) return new Error('Savage Worlds character sheets not found');
+			return sheets;
         }
 	},
 	Mutation: {
-        addSavageWorldsCharacterSheet: async (_, args) => await new Sheet(args).save()
-	}
+        addSheet: async (_, { input }) => await new Sheet(input).save()
+    }
 };
