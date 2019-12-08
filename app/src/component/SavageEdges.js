@@ -1,18 +1,23 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Edges } from '../data/customData.json';
+import React from 'react'
+import { Grid, IconButton, Tooltip } from '@material-ui/core'
+import VisibilityIcon from '@material-ui/icons/Visibility'
 
-const SavageEdges = props => (
-	<div>
-		<h2> Edges</h2>
+
+const SavageEdges = ({currentEdges, edgesList}) => (
+
+	< div >
+		<h2>Edges</h2>
 		<Grid container spacing={3}>
-			<Grid item xs={12}>
-				<span>{Edges.Alertness.name}</span>
-				<p>Type: {Edges.Alertness.type}</p>
-				<p>Requirement: {Edges.Alertness.requirement}</p>
-				<p>Description: {Edges.Alertness.description}</p>
-			</Grid>
+		{currentEdges.map((edge, i) =>
+			<Grid item xs={12} key={i}>
+					{edgesList[edge].name}
+					<Tooltip title={`Description: ${edgesList[edge].description}`}>
+						<IconButton size="small" >
+							<VisibilityIcon/>
+						</IconButton>
+					</Tooltip>
+			</Grid>)}
 		</Grid>
-	</div>
-);
-export default SavageEdges;
+	</div >
+)
+export default SavageEdges
