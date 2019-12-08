@@ -12,7 +12,6 @@ module.exports = gql`
 	type User {
 		id: ID!
 		email: String!
-		characters: [Character!]
 	}
 	type Token {
 		token: String!

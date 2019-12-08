@@ -1,26 +1,25 @@
 const { ForbiddenError } = require('apollo-server');
 const { skip } = require('graphql-resolvers');
-const Character = require('../models/Character')
 
-const isAuthenticated = (parent, args, { me }) => (me ? skip : new ForbiddenError('Not authenticated as user.'));
+const isAuthenticated = (parent, args, { me }) =>
+	me ? skip : new ForbiddenError('Not authenticated as user.');
 
-const isCharacterOwner = async (parent, args, { me }) => {
-    const { name } = args;
-    
-    const character = await Character.findOne({ name })	
+// const isCharacterOwner = async (parent, args, { me }) => {
+//     const { name } = args;
 
-	if (!character) {
-		throw new Error('Character not found.');
-	}
+//     const character = await Character.findOne({ name })
 
-	if (character.userId !== me.email) {
-		throw new ForbiddenError('Not authenticated as Character owner.');
-	}
+// 	if (!character) {
+// 		throw new Error('Character not found.');
+// 	}
 
-	return skip;
-};
+// 	if (character.userId !== me.email) {
+// 		throw new ForbiddenError('Not authenticated as Character owner.');
+// 	}
+
+// 	return skip;
+// };
 
 module.exports = {
-	isAuthenticated,
-	isCharacterOwner
+	isAuthenticated
 };
