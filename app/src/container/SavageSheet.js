@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { Component } from 'react'
 import SavageAbilities from '../component/SavageAbilities'
 import SavageSkills from '../component/SavageSkills'
 import SavageDerivedStats from '../component/SavageDerivedStats'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 import SavageDescription from '../component/SavageDescription'
 import SavageEdges from '../component/SavageEdges'
 import {
@@ -12,33 +13,30 @@ import {
   skills
 } from '../data/customData.json'
 import { edges } from '../data/savageEdges.json'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 
-const GET_CHARACTER = gql`
-  query getCharacter($id: String!) {
-      character(id: $id) {
-        id
-      }
+export default class SavageSheet extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      attributes: attributes,
+      description: description,
+      skills: skills,
+      derived: {
+        maxEncum: 20
+      },
+      currentEdges: ['Alertness', 'Aristocrat', 'Berserk']
     }
 `
 
 const charId = window.location.pathname.split('/')[2]
 console.log(charId)
 
-export default function CharacterSheet (props) {
-  // TODO: use data in the component when i can actually call data
-  const { data, loading, error } = useQuery(GET_CHARACTER, { variables: { id: charId } })
-  const [state, setState] = useState({
-    attributes: attributes,
-    description: description,
-    skills: skills,
-    derived: {
-      maxEncum: 20
-    },
-    currentEdges: ['Alertness', 'Aristocrat', 'Berserk']
-  })
-  const updateMaxEncumberance = () => {
+  componentDidMount () {
+    this.updateMaxEncumberance()
+  }
+
+  updateMaxEncumberance () {
     let newVal
     const evalStrength = parseInt(state.attributes.Strength)
 
@@ -63,8 +61,9 @@ export default function CharacterSheet (props) {
     }
     setState({ derived: { ...state.derived, maxEncum: newVal } })
   }
-  const updateAttributes = e => {
-    setState(
+
+  updateAttributes (e) {
+    this.setState(
       {
         attributes: {
           ...state.attributes,
@@ -80,11 +79,76 @@ export default function CharacterSheet (props) {
         [e.target.name]: e.target.value
       }
     })
-  if (loading) {
-    return <h1>CALM DOWN YOUR CHARACTER IS LOADING!</h1>
+
+  async handleClick () {
+    const writeBody = JSON.stringify(this.state)
+    console.log(writeBody)
+    try {
+      const response = await fetch('http://localhost:8080/write', {
+        method: 'put',
+        body: writeBody,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      const json = await response.json()
+      console.log('Success:', JSON.stringify(json))
+    } catch (error) {
+      console.error('Error:', error)
+    }
   }
-  if (error) {
-    return <h1>FUCK THERE WAS AN ERROR!!!</h1>
+
+  render () {
+    return (
+      <>
+        <Grid container spacing={3}>
+          <Grid item xs={1} />
+          <Grid item xs={11}>
+            <Button onClick={() => this.handleClick()}>
+              Save Character Info
+            </Button>
+            <SavageDescription
+              updateDescription={this.updateAttributes}
+              description={this.state.description}
+            />
+          </Grid>
+          <Grid item xs={1}>
+            <span />
+          </Grid>
+          <Grid item xs={5}>
+            <SavageAbilities
+              updateAttributes={this.updateAttributes}
+              attributes={this.state.attributes}
+              possibleValues={possibleValues}
+              updateMaxEncumberance={this.updateMaxEncumberance}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <SavageDerivedStats baseStats={this.state} />
+          </Grid>
+          <Grid item xs={1}>
+            <span />
+          </Grid>
+          <Grid item xs={5}>
+            <SavageSkills
+              updateSkills={this.updateSkills}
+              skills={this.state.skills}
+              possibleValues={possibleValues}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <SavageEdges
+              currentEdges={this.state.currentEdges}
+              edgesList={edges}
+            />
+          </Grid>
+        </Grid>
+        <ul className='sheetColumns'>
+          <li />
+        </ul>
+      </>
+    )
   }
   return (
     <>
