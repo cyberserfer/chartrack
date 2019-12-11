@@ -1,8 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { normalize } from 'polished'
+import preset from '@rebass/preset'
 
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
+const GlobalStyles = createGlobalStyle`
+  ${normalize()}
+  body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  }
+`
+
+ReactDOM.render(
+  <ThemeProvider theme={preset}>
+    <GlobalStyles />
+    <App />
+  </ThemeProvider>
+  , document.getElementById('root'))

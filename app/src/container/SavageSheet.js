@@ -1,21 +1,21 @@
-import React, { Component } from "react"
-import SavageAbilities from "../component/SavageAbilities"
-import SavageSkills from "../component/SavageSkills"
-import SavageDerivedStats from "../component/SavageDerivedStats"
-import Grid from "@material-ui/core/Grid"
-import Button from "@material-ui/core/Button"
-import SavageDescription from "../component/SavageDescription"
-import SavageEdges from "../component/SavageEdges"
+import React, { Component } from 'react'
+import SavageAbilities from '../component/SavageAbilities'
+import SavageSkills from '../component/SavageSkills'
+import SavageDerivedStats from '../component/SavageDerivedStats'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import SavageDescription from '../component/SavageDescription'
+import SavageEdges from '../component/SavageEdges'
 import {
   possibleValues,
   attributes,
   description,
   skills
-} from "../data/customData.json"
-import { edges } from "../data/savageEdges.json"
+} from '../data/customData.json'
+import { edges } from '../data/savageEdges.json'
 
 export default class SavageSheet extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -25,18 +25,18 @@ export default class SavageSheet extends Component {
       derived: {
         maxEncum: 20
       },
-      currentEdges: ["Alertness", "Aristocrat", "Berserk"]
+      currentEdges: ['Alertness', 'Aristocrat', 'Berserk']
     }
 
     this.updateAttributes = this.updateAttributes.bind(this)
     this.updateMaxEncumberance = this.updateMaxEncumberance.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.updateMaxEncumberance()
   }
 
-  updateMaxEncumberance() {
+  updateMaxEncumberance () {
     let newVal
     const evalStrength = parseInt(this.state.attributes.Strength)
 
@@ -62,7 +62,7 @@ export default class SavageSheet extends Component {
     this.setState({ derived: { ...this.state.derived, maxEncum: newVal } })
   }
 
-  updateAttributes(e) {
+  updateAttributes (e) {
     this.setState(
       {
         attributes: {
@@ -90,26 +90,26 @@ export default class SavageSheet extends Component {
       }
     })
 
-  async handleClick() {
+  async handleClick () {
     const writeBody = JSON.stringify(this.state)
     console.log(writeBody)
     try {
-      const response = await fetch("http://localhost:8080/write", {
-        method: "put",
+      const response = await fetch('http://localhost:8080/write', {
+        method: 'put',
         body: writeBody,
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         }
       })
       const json = await response.json()
-      console.log("Success:", JSON.stringify(json))
+      console.log('Success:', JSON.stringify(json))
     } catch (error) {
-      console.error("Error:", error)
+      console.error('Error:', error)
     }
   }
 
-  render() {
+  render () {
     return (
       <>
         <Grid container spacing={3}>
@@ -154,7 +154,7 @@ export default class SavageSheet extends Component {
             />
           </Grid>
         </Grid>
-        <ul className="sheetColumns">
+        <ul className='sheetColumns'>
           <li />
         </ul>
       </>

@@ -8,16 +8,16 @@ const SavageSkills = ({ updateSkills, skills, possibleValues }) => (
     <div>
       {Object.entries(skills).map(skill => {
         const objName = skill[0]
-          const objValue = skill[1]
-          return (
-            <List 
-              key={objName}
-              objName={objName}
-              objValue={objValue}
-              possibleValues={possibleValues} 
-              funcOne={updateSkills} 
-            />
-          )
+        const objValue = skill[1]
+        return (
+          <List
+            key={objName}
+            objName={objName}
+            objValue={objValue}
+            possibleValues={possibleValues}
+            funcOne={updateSkills}
+          />
+        )
       })}
     </div>
   </div>
