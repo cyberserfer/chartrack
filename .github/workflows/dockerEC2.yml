@@ -1,0 +1,17 @@
+name: Build Image and Deploy to EC2
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build_container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to docker
+        run: docker login -u ${INPUT_USERNAME} --password-stdin ${INPUT_REGISTRY}
+      - name: Build docker image
+        run: docker build $BUILDPARAMS -t ${DOCKERNAME} ${CONTEXT}      
+      - name: Push to dockerhub 
+        run: docker push ${DOCKERNAME}
