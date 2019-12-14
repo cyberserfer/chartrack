@@ -1,8 +1,4 @@
 const Sheet = require('../models/Sheet');
-const Edge = require('../models/Edge');
-const Hindrance = require('../models/Hindrance');
-const Item = require('../models/Item');
-const Power = require('../models/Power');
 
 module.exports = {
 	Query: {
@@ -19,19 +15,5 @@ module.exports = {
 	},
 	Mutation: {
 		addSheet: async (_, { input }) => await new Sheet(input).save()
-	},
-	Sheet: {
-		edges: async (parent, _, { me }) => {
-			return await Edge.find();
-		},
-		hindrances: async (parent, _, { me }) => {
-			return await Hindrance.find();
-		},
-		items: async (parent, _, { me }) => {
-			return await Item.find();
-		},
-		powers: async (parent, _, { me }) => {
-			return await Power.find();
-		}
 	}
 };

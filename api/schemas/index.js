@@ -3,7 +3,7 @@ const edgeSchema = require('./edgeSchema');
 const hindranceSchema = require('./hindranceSchema');
 const itemSchema = require('./itemSchema');
 const powerSchema = require('./powerSchema');
-const sheetchema = require('./SheetSchema');
+const sheetSchema = require('./sheetSchema');
 const userSchema = require('./userSchema');
 
 const baseSchema = gql`
@@ -24,6 +24,6 @@ module.exports = [
 	hindranceSchema,
 	itemSchema,
 	powerSchema,
-	sheetchema,
+	sheetSchema,
 	userSchema
 ];
