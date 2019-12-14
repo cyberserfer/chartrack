@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build docker image
-        run: docker build $BUILDPARAMS -t ${DOCKERNAME}     
+        run: docker-compose build $BUILDPARAMS -t ${DOCKERNAME}     
       - name: Login to docker
         run: docker login -u ${INPUT_USERNAME} --password-stdin ${DOCKER_REGISTRY_TOKEN}
       - name: Push to dockerhub 
