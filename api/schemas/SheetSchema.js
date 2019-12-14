@@ -8,6 +8,8 @@ module.exports = gql`
 
 	extend type Mutation {
 		addSheet(input: SheetInput): Sheet!
+		updateSheet(input: SheetInput): Sheet!
+		deleteSheet(input: SheetInput): Int!
 	}
 
 	type Skill {
@@ -102,11 +104,12 @@ module.exports = gql`
 		effects: [String]
 	}
 
-	type CharacterDetails {
+	type CharacterDetails {		
+		playerName: String
+		characterName: String
 		background: String
 		description: String
-		height: String
-		name: String
+		height: String		
 		race: Race
 		weight: String
 		hair: String
@@ -114,10 +117,11 @@ module.exports = gql`
 	}
 
 	input CharacterDetailsInput {
+		playerName: String
+		characterName: String!		
 		background: String
 		description: String
 		height: String
-		name: String
 		race: RaceInput
 		weight: String
 		hair: String
@@ -152,8 +156,8 @@ module.exports = gql`
 
 	type Sheet {
 		_id: ID!
-		userId: Int
-		details: CharacterDetails
+		userId: String!
+		details: CharacterDetails		
 		startingPoints: StartingPoints
 		attributes: Attributes
 		skills: Skills
@@ -164,7 +168,7 @@ module.exports = gql`
 	}
 
 	input SheetInput {
-		userId: Int!
+		id: ID
 		details: CharacterDetailsInput
 		startingPoints: StartingPointsInput
 		attributes: AttributesInput
