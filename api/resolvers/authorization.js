@@ -4,22 +4,23 @@ const { skip } = require('graphql-resolvers');
 const isAuthenticated = (parent, args, { me }) =>
 	me ? skip : new ForbiddenError('Not authenticated as user.');
 
-// const isCharacterOwner = async (parent, args, { me }) => {
-//     const { name } = args;
+const isSheetOwner = async (parent, { input }, { me, models }) => {
+	const { id } = input;
 
-//     const character = await Character.findOne({ name })
+	const sheet = await models.Sheet.findOne({ _id: id });
 
-// 	if (!character) {
-// 		throw new Error('Character not found.');
-// 	}
+	if (!sheet) {
+		throw new Error('Sheet not found.');
+	}
 
-// 	if (character.userId !== me.email) {
-// 		throw new ForbiddenError('Not authenticated as Character owner.');
-// 	}
+	if (sheet.userId !== me._id) {
+		throw new ForbiddenError('Not authenticated as Sheet owner.');
+	}
 
-// 	return skip;
-// };
+	return skip;
+};
 
 module.exports = {
-	isAuthenticated
+	isAuthenticated,
+	isSheetOwner
 };

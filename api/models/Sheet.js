@@ -8,17 +8,7 @@ const Skill = {
 };
 
 const SavageWorldsCharacterSheet = new Schema({
-	userId: Number,
-	details: {
-		background: String,
-		description: String,
-		height: String,
-		name: String,
-		race: {
-			name: String,
-			effects: [String]
-		}
-	},
+	userId: String,	
 	startingPoints: {
 		// Base 5
 		attributePoints: Number,
@@ -32,13 +22,16 @@ const SavageWorldsCharacterSheet = new Schema({
 		strength: Number,
 		vigor: Number
 	},
-	description: {
+	details: {
 		playerName: String,
 		playerId: Number,
 		campaign: String,
-		characterName: String,
+		characterName: {
+			type: String,
+			require: 'characterName is required'
+		},
 		characterId: Number,
-		charDescription: String,
+		description: String,
 		race: String,
 		height: String,
 		weight: String,
