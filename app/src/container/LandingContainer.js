@@ -30,9 +30,9 @@ const LoginWrapper = styled.div`
 `
 
 const LOGIN = gql`
-  mutation logIn($email: String!, $password: String!) {
-    logIn(email: $email, password: $password) {
-      id
+  mutation signIn($email: String!, $password: String!) {
+    signIn(data: { email: $email, password: $password }) {
+      token
     }
   }
 `
@@ -44,7 +44,7 @@ function LandingContainer(props) {
   const [logIn, { data, loading, error }] = useMutation(LOGIN)
   useEffect(() => {
     if (data) {
-      window.localStorage.setItem("jwt", data.logIn.id)
+      window.localStorage.setItem("jwt", data.signIn.id)
       setAuthed(window.localStorage.getItem("jwt"))
       props.history.push("/savageSheet")
     }
