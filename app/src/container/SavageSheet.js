@@ -16,8 +16,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 const GET_CHARACTER = gql`
-  query getCharacter($id: ID!) {
-      character(input: {_id: $id}) {
+  query getCharacter($_id: ID!) {
+      character(input: {_id: $_id}) {
         _id
       }
     }
