@@ -13,8 +13,10 @@ const Attribute = {
 }
 
 const Detail = {
-	name: String,
-	value: String,
+    name: String,
+    type: String,
+    value: String,
+    require: String,
 	effects: [String]
 }
 

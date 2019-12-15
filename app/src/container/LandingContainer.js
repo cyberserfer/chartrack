@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react"
-import { withRouter } from "react-router-dom"
-import styled from "styled-components"
-import { useMutation } from "@apollo/react-hooks"
-import gql from "graphql-tag"
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 const LoginWrapper = styled.div`
-  width: 100%;
-  height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  form {
-    display: flex;
-    flex-direction: column;
-    jusitfy-content: center;
-    div {
-      display: flex;
-      flex-direction: column;
-      input {
-        margin: 16px 0;
-        width: 30vw;
-        padding: 8px 16px;
-      }
-    }
-    button {
-      padding: 16px 8px;
-    }
-  }
-`
+	width: 100%;
+	height: 85vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	form {
+		display: flex;
+		flex-direction: column;
+		jusitfy-content: center;
+		div {
+			display: flex;
+			flex-direction: column;
+			input {
+				margin: 16px 0;
+				width: 30vw;
+				padding: 8px 16px;
+			}
+		}
+		button {
+			padding: 16px 8px;
+		}
+	}
+`;
 
 const LOGIN = gql`
   mutation signIn($email: String!, $password: String!) {
@@ -83,4 +83,4 @@ function LandingContainer(props) {
     </LoginWrapper>
   )
 }
-export default withRouter(LandingContainer)
+export default withRouter(LandingContainer);

@@ -8,6 +8,8 @@ module.exports = gql`
 
 	extend type Mutation {
 		addSheet(input: SheetInput): Sheet!
+		updateSheet(input: SheetInput): Sheet!
+		deleteSheet(input: SheetInput): Int!
 	}
 	type Attribute {
 		name: String

@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const { mongooseConnect } = require('./models');
+const { mongooseConnect, models } = require('./models');
 
 const typeDefs = require('./schemas');
 const resolvers = require('./resolvers');
@@ -31,7 +31,8 @@ const server = new ApolloServer({
 
 		return {			
 			me,
-			secret: process.env.SECRET
+			secret: process.env.SECRET,
+			models
 		};
 	},
 });
