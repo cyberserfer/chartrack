@@ -16,8 +16,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 const GET_CHARACTER = gql`
-  query getCharacter($id: ID!) {
-      character(input: {_id: $id}) {
+  query getCharacter($_id: ID!) {
+      character(input: {_id: $_id}) {
         _id
       }
     }
@@ -28,7 +28,7 @@ console.log(charId)
 
 export default function CharacterSheet (props) {
   // TODO: use data in the component when i can actually call data
-  const { data, loading, error } = useQuery(GET_CHARACTER, { variables: { id: charId } })
+  const { data, loading, error } = useQuery(GET_CHARACTER, { variables: { _id: charId } })
   const [state, setState] = useState({
     attributes: attributes,
     description: description,

@@ -7,77 +7,33 @@ const Skill = {
 	value: Number
 };
 
-const SavageWorldsCharacterSheet = new Schema({
-	userId: String,	
+const Attribute = {
+	name: String,
+	value: Number
+}
+
+const Detail = {
+    name: String,
+    type: String,
+    value: String,
+    require: String,
+	effects: [String]
+}
+
+const Sheet = new Schema({
+	userId: String,
+	details: [Detail],
 	startingPoints: {
 		// Base 5
 		attributePoints: Number,
 		// Base 12
 		skills: Number
 	},
-	attributes: {
-		agility: Number,
-		smarts: Number,
-		spirit: Number,
-		strength: Number,
-		vigor: Number
-	},
-	details: {
-		playerName: String,
-		playerId: Number,
-		campaign: String,
-		characterName: {
-			type: String,
-			require: 'characterName is required'
-		},
-		characterId: Number,
-		description: String,
-		race: String,
-		height: String,
-		weight: String,
-		hair: String,
-		eyes: String,
-		createdDate: { type: Date, default: Date.now },
-		updatedDate: { type: Date, default: Date.now }
-	},
-	skills: {
-		// TODO: do this for all skills
-		academics: Skill,
-		athletics: Skill,
-		battle: Skill,
-		boating: Skill,
-		commonKnowledge: Skill,
-		driving: Skill,
-		electronics: Skill,
-		faith: Skill,
-		fighting: Skill,
-		focus: Skill,
-		gambling: Skill,
-		hacking: Skill,
-		healing: Skill,
-		intimidation: Skill,
-		language: Skill,
-		notice: Skill,
-		occult: Skill,
-		performance: Skill,
-		persuasion: Skill,
-		piloting: Skill,
-		psionics: Skill,
-		repair: Skill,
-		research: Skill,
-		riding: Skill,
-		science: Skill,
-		shooting: Skill,
-		spellcasting: Skill,
-		stealth: Skill,
-		survival: Skill,
-		taunt: Skill,
-		thievery: Skill,
-		weirdScience: Skill
-	},
+	attributes: [Attribute],
+	skills: [Skill],
 	edges: [{ type: mongoose.Schema.ObjectId, ref: 'Edge' }],
 	hindrances: [{ type: mongoose.Schema.ObjectId, ref: 'Hindrance' }],
 	items: [{ type: mongoose.Schema.ObjectId, ref: 'Item' }],
 	powers: [{ type: mongoose.Schema.ObjectId, ref: 'Power' }]
 });
-module.exports = mongoose.model('SavageWorldsCharacterSheet', SavageWorldsCharacterSheet);
+module.exports = mongoose.model('Sheet', Sheet);
