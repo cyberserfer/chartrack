@@ -168,7 +168,7 @@ module.exports = gql`
 	}
 
 	input SheetInput {
-		id: ID
+		_id: ID
 		details: CharacterDetailsInput
 		startingPoints: StartingPointsInput
 		attributes: AttributesInput
