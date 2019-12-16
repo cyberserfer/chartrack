@@ -1,135 +1,102 @@
-import React, { useState, useEffect } from 'react'
-import SavageAbilities from '../component/SavageAbilities'
-import SavageSkills from '../component/SavageSkills'
-import SavageDerivedStats from '../component/SavageDerivedStats'
-import Grid from '@material-ui/core/Grid'
-import SavageDescription from '../component/SavageDescription'
-import SavageEdges from '../component/SavageEdges'
-import {
-  possibleValues,
-  attributes,
-  description,
-  skills
-} from '../data/customData.json'
-import { edges } from '../data/savageEdges.json'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import { useQuery } from "@apollo/react-hooks";
+import GET_CHARACTER from "../queries/get-character";
+import CharacterDetails from "../shared/CharacterDetails";
+import DicePoolMapper from "../shared/DicePoolMapper";
+import SavageDerivedStats from "../component/SavageDerivedStats";
+// templates
+import characterDetailsTemplate from "../templates/character-details-template";
+import attributesTemplate from "../templates/attributes-template";
+import swadeSkillsTemplate from "../templates/swade-skills-template";
 
-const GET_CHARACTER = gql`
-  query getCharacter($_id: ID!) {
-      character(input: {_id: $_id}) {
-        _id
-      }
-    }
-`
-
-const charId = window.location.pathname.split('/')[2]
-console.log(charId)
-
-export default function CharacterSheet (props) {
-  // TODO: use data in the component when i can actually call data
-  const { data, loading, error } = useQuery(GET_CHARACTER, { variables: { _id: charId } })
+export default function CharacterSheet(props) {
   const [state, setState] = useState({
-    attributes: attributes,
-    description: description,
-    skills: skills,
-    derived: {
-      maxEncum: 20
-    },
-    currentEdges: ['Alertness', 'Aristocrat', 'Berserk']
-  })
-  const updateMaxEncumberance = () => {
-    let newVal
-    const evalStrength = parseInt(state.attributes.Strength)
+    addingNewCharacter: props.addingNewCharacter
+  });
 
-    switch (evalStrength) {
-      case 4:
-        newVal = 20
-        break
-      case 6:
-        newVal = 40
-        break
-      case 8:
-        newVal = 60
-        break
-      case 10:
-        newVal = 80
-        break
-      case 12:
-        newVal = 100
-        break
-      default:
-        newVal = 0
+  const characterId = !state.addingNewCharacter
+    ? window.location.pathname.split("/")[2]
+    : null;
+
+  const { data: { character = {} } = {}, loading, error } = useQuery(
+    GET_CHARACTER,
+    {
+      variables: { _id: characterId },
+      skip: !characterId
     }
-    setState({ derived: { ...state.derived, maxEncum: newVal } })
+  );
+
+  if (!characterId && !state.addingNewCharacter) {
+    return (
+      <button
+        onClick={() => {
+          setState({ addingNewCharacter: true });
+          props.history.push("../savageSheet/addNewCharacter");
+        }}
+      >
+        Add new character
+      </button>
+    );
   }
-  const updateAttributes = e => {
-    setState(
-      {
-        attributes: {
-          ...state.attributes,
-          [e.target.name]: e.target.value
-        }
-      }
-    )
-  }
-  const updateSkills = e =>
-    setState({
-      skills: {
-        ...state.skills,
-        [e.target.name]: e.target.value
-      }
-    })
+
   if (loading) {
-    return <h1>CALM DOWN YOUR CHARACTER IS LOADING!</h1>
+    return <h1> CALM DOWN YOUR CHARACTER IS LOADING! </h1>;
   }
   if (error) {
-    return <h1>FUCK THERE WAS AN ERROR!!!</h1>
+    return <h1> FUCK THERE WAS AN ERROR!!! </h1>;
   }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("submitting...", e.target);
+    return;
+  };
+  console.log("character data", character);
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>
         <Grid item xs={1} />
         <Grid item xs={11}>
-          <SavageDescription
-            updateDescription={updateAttributes}
-            description={state.description}
+          <CharacterDetails
+            data={character.details}
+            template={characterDetailsTemplate}
           />
         </Grid>
         <Grid item xs={1}>
           <span />
         </Grid>
         <Grid item xs={5}>
-          <SavageAbilities
-            updateAttributes={updateAttributes}
-            attributes={state.attributes}
-            possibleValues={possibleValues}
-            updateMaxEncumberance={updateMaxEncumberance}
+          <DicePoolMapper
+            data={character.attributes}
+            template={attributesTemplate}
           />
         </Grid>
         <Grid item xs={6}>
-          <SavageDerivedStats baseStats={state} />
+          <SavageDerivedStats baseStats={character} />
         </Grid>
         <Grid item xs={1}>
           <span />
         </Grid>
         <Grid item xs={5}>
-          <SavageSkills
-            updateSkills={updateSkills}
-            skills={state.skills}
-            possibleValues={possibleValues}
+          <DicePoolMapper
+            data={character.skills}
+            template={swadeSkillsTemplate}
           />
         </Grid>
-        <Grid item xs={6}>
-          <SavageEdges
-            currentEdges={state.currentEdges}
-            edgesList={edges}
-          />
-        </Grid>
+        {/* <Grid item xs={6}>
+          <SavageEdges currentEdges={state.currentEdges} edgesList={edges} />
+        </Grid> */}
       </Grid>
-      <ul className='sheetColumns'>
-        <li />
-      </ul>
-    </>
-  )
+      <input
+        type="submit"
+        onSubmit={e => handleSubmit(e)}
+        value={
+          state.addingNewCharacter
+            ? "Create New Character"
+            : "Save Existing Character"
+        }
+      />
+    </form>
+  );
 }

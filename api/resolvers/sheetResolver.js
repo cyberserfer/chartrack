@@ -15,9 +15,8 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addSheet: combineResolvers(isAuthenticated, async (_, { input }, { me, models }) => {					
-			const exists = await models.Sheet.findOne({ userId: me._id, 'details.characterName': input.details.characterName });						
-			if (exists) return new Error('Sheet already exists');							
+		addSheet: combineResolvers(isAuthenticated, async (_, { input }, { me, models }) => {										
+			if (input._id) return new Error('Sheet already exists');							
 			const sheet = new models.Sheet({ userId: me._id, ...input});
 			return await sheet.save();			
 		}),
@@ -26,8 +25,8 @@ module.exports = {
 			return await models.Sheet.findOneAndUpdate({ _id: id }, { ...input }, { new: true })
 		}),
 		deleteSheet: combineResolvers(isAuthenticated, isSheetOwner, async (_, { input }, { models }) => {
-			const { id } = input;
-			const { deletedCount } = await models.Sheet.deleteOne({ _id: id });			
+			const { _id } = input;
+			const { deletedCount } = await models.Sheet.deleteOne({ _id: _id });			
 			return deletedCount;			
 		}),
 	}
