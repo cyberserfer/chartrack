@@ -1,58 +1,64 @@
-import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import { useQuery } from "@apollo/react-hooks";
-import GET_CHARACTER from "../queries/get-character";
-import CharacterDetails from "../shared/CharacterDetails";
-import DicePoolMapper from "../shared/DicePoolMapper";
-import SavageDerivedStats from "../component/SavageDerivedStats";
+import React, {useState} from 'react'
+import Grid from '@material-ui/core/Grid'
+import {useQuery} from '@apollo/react-hooks'
+import GET_CHARACTER from '../queries/get-character'
+import CharacterDetails from '../shared/CharacterDetails'
+import DicePoolMapper from '../shared/DicePoolMapper'
+import SavageDerivedStats from '../component/SavageDerivedStats'
 // templates
-import characterDetailsTemplate from "../templates/character-details-template";
-import attributesTemplate from "../templates/attributes-template";
-import swadeSkillsTemplate from "../templates/swade-skills-template";
+import characterDetailsTemplate from '../templates/character-details-template'
+import attributesTemplate from '../templates/attributes-template'
+import swadeSkillsTemplate from '../templates/swade-skills-template'
 
 export default function CharacterSheet(props) {
   const [state, setState] = useState({
-    addingNewCharacter: props.addingNewCharacter
-  });
+    addingNewCharacter: props.addingNewCharacter,
+    character: null
+  })
 
   const characterId = !state.addingNewCharacter
-    ? window.location.pathname.split("/")[2]
-    : null;
+    ? window.location.pathname.split('/')[2]
+    : null
 
-  const { data: { character = {} } = {}, loading, error } = useQuery(
+  const {data: {character = {}} = {}, loading, error} = useQuery(
     GET_CHARACTER,
     {
-      variables: { _id: characterId },
+      variables: {_id: characterId},
       skip: !characterId
     }
-  );
+  )
+
+  if (character && !state.character) {
+    // setState(character)
+    console.log(character, state.character)
+  }
 
   if (!characterId && !state.addingNewCharacter) {
     return (
       <button
         onClick={() => {
-          setState({ addingNewCharacter: true });
-          props.history.push("../savageSheet/addNewCharacter");
+          setState({addingNewCharacter: true})
+          props.history.push('../savageSheet/addNewCharacter')
         }}
       >
         Add new character
       </button>
-    );
+    )
   }
 
   if (loading) {
-    return <h1> CALM DOWN YOUR CHARACTER IS LOADING! </h1>;
+    return <h1> CALM DOWN YOUR CHARACTER IS LOADING! </h1>
   }
   if (error) {
-    return <h1> FUCK THERE WAS AN ERROR!!! </h1>;
+    return <h1> FUCK THERE WAS AN ERROR!!! </h1>
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
-    console.log("submitting...", e.target);
-    return;
-  };
-  console.log("character data", character);
+    e.preventDefault()
+    console.log('submitting...', e.target, state)
+    return
+  }
+  console.log('character data', character, state.character)
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>
@@ -89,14 +95,14 @@ export default function CharacterSheet(props) {
         </Grid> */}
       </Grid>
       <input
-        type="submit"
+        type='submit'
         onSubmit={e => handleSubmit(e)}
         value={
           state.addingNewCharacter
-            ? "Create New Character"
-            : "Save Existing Character"
+            ? 'Create New Character'
+            : 'Save Existing Character'
         }
       />
     </form>
-  );
+  )
 }
