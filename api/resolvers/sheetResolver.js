@@ -4,12 +4,18 @@ const { isAuthenticated, isSheetOwner } = require('./authorization');
 module.exports = {
 	Query: {
 		character: async (_, { input }, { models }) => {
-			const sheet = await models.Sheet.findOne(input);
+			
+			let sheet = await models.Sheet.findOne(input).populate(['edges','hindrances']);
+			// sheet.edges = (sheet, arg, { models }) => models.Edge.find({
+			// 		where: {
+			// 			_id: arg
+			// 		}
+			// 	});
 			if (!sheet) return new Error('No Savage Worlds character sheet found');
 			return sheet;
 		},
 		characters: async (_, { input }, { models }) => {
-			const sheets = await models.Sheet.find(input);
+			const sheets = await models.Sheet.find(input).populate(['edges','hindrances']);
 			if (!sheets) return new Error('Savage Worlds character sheets not found');
 			return sheets;
 		}

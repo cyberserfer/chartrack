@@ -3,27 +3,18 @@ import get from 'lodash.get'
 
 export default ({baseStats: {attributes, skills}}) => {
   console.log('savage derived stats', attributes, skills)
-  const fighting = get(
-    skills.find(prop => prop.name === 'Fighting'),
+  const fighting = skills ? get(skills.find(prop => prop.name === 'Fighting'),
     'value',
     0
-  )
-  const vigor = get(
-    attributes.find(prop => prop.name === 'Vigor'),
-    'value',
-    4
-  )
-  const strength = get(
-    attributes.find(prop => prop.name === 'Strength'),
-    'value',
-    4
-  )
+  ) : 0
+
+  const strength = get(attributes, 'strength', 0)
+  const vigor = get(attributes, 'vigor', 0)
 
   const maxEncumberance = () => {
     let newVal
-    const evalStrength = parseInt(strength.value)
 
-    switch (evalStrength) {
+    switch (strength) {
       case 6:
         newVal = 40
         break
@@ -52,7 +43,7 @@ export default ({baseStats: {attributes, skills}}) => {
         </span>
         <div>Parry: {2 + fighting / 2}</div>
         <span style={{fontSize: '50%'}}>2 + Half Fighting</span>
-        <div>Toughness: {2 + vigor / 2}</div>
+        <div>Toughness: {2 + (vigor || 0) / 2}</div>
         <span style={{fontSize: '50%'}}>2 + Half Vigor</span>
         <div>Max Encumbrance: {maxEncumberance()} </div>
       </div>

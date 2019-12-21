@@ -4,19 +4,28 @@ export default gql`
   query getCharacter($_id: ID!) {
       character(input: { _id: $_id }) {
         _id
-        userId
         details {
-          name
-          value
-          effects
+          playerName
+          playerId
+          campaign
+          characterName
+          description
+          race
+          height
+          weight
+          hair
+          eyes
         }
         startingPoints {
           attributePoints
           skills
         }
         attributes {
-          name
-          value
+          agility
+          smarts
+          spirit
+          strength
+          vigor
         }
         skills {
           baseAttribute
@@ -25,14 +34,14 @@ export default gql`
         }
         edges {
           name
-          type 
+          edgeType 
           requirements
           description
           effects 
         }
         hindrances {
           name
-          type 
+          hindranceType 
           requirements
           description
           effects 

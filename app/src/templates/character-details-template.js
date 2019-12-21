@@ -1,14 +1,14 @@
 export default {
     title: 'Character Details',
     fields: [
-        { name: 'Character Name', element: 'input' },
-        { name: 'Player Name', element: 'input' },
-        { name: 'Campaign', element: 'input' },
-        { name: 'Race', element: 'input' },
-        { name: 'Height', element: 'input' },
-        { name: 'Weight', element: 'input' },
-        { name: 'Hair', element: 'input' },
-        { name: 'Eyes', element: 'input' },
-        { name: 'Background', element: 'textarea' },
+        { key: 'characterName', name: 'Character Name', element: 'input' },
+        { key: 'playerName', name: 'Player Name', element: 'input' },
+        { key: 'campaign', name: 'Campaign', element: 'input' },
+        { key: 'race', name: 'Race', element: 'input' },
+        { key: 'height', name: 'Height', element: 'input' },
+        { key: 'weight', name: 'Weight', element: 'input' },
+        { key: 'hair', name: 'Hair', element: 'input' },
+        { key: 'eyes', name: 'Eyes', element: 'input' },
+        { key: 'desciption', name: 'Description', element: 'textarea' },
     ]
 }

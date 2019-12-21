@@ -11,28 +11,48 @@ module.exports = gql`
     updateSheet(input: SheetInput): Sheet!
     deleteSheet(input: SheetInput): Int!
   }
-  type Attribute {
-    name: String
-    value: Int
-  }
 
-  type CharacterDetail {
-    name: String
-    detailType: String
-    value: String
-    require: String
-    effects: [String]
-  }
-  input CharacterDetailInput {
-    name: String
-    value: String
-    effects: [String]
-  }
+  type Attributes {
+      agility: Int,
+      smarts: Int,
+      spirit: Int,
+      strength: Int,
+      vigor: Int
+    }
 
-  input AttributeInput {
-    name: String
-    value: Int
-  }
+  type CharacterDetails {
+      playerName: String,
+      playerId: String,
+      campaign: String,
+      characterName: String,
+      description: String,
+      race: String,
+      height: String,
+      weight: String,
+      hair: String,
+      eyes: String
+    }
+  input CharacterDetailsInput {
+      playerName: String,
+      playerId: String,
+      campaign: String,
+      characterName: String,
+      description: String,
+      race: String,
+      height: String,
+      weight: String,
+      hair: String,
+      eyes: String
+    }
+
+  input AttributesInput {
+      agility: Int,
+      smarts: Int,
+      spirit: Int,
+      strength: Int,
+      vigor: Int
+    }
+    
   type Skill {
     baseAttribute: String
     name: String
@@ -43,16 +63,6 @@ module.exports = gql`
     baseAttribute: String
     name: String
     value: Int
-  }
-
-  type Race {
-    name: String
-    effects: [String]
-  }
-
-  input RaceInput {
-    name: String
-    effects: [String]
   }
 
   type StartingPoints {
@@ -68,9 +78,9 @@ module.exports = gql`
   type Sheet {
     _id: ID!
     userId: ID
-    details: [CharacterDetail]
+    details: CharacterDetails
     startingPoints: StartingPoints
-    attributes: [Attribute]
+    attributes: Attributes
     skills: [Skill]
     edges: [Edge]
     hindrances: [Hindrance]
@@ -81,13 +91,13 @@ module.exports = gql`
   input SheetInput {
     _id: ID
     userId: ID
-    details: [CharacterDetailInput]
+    details: CharacterDetailsInput
     startingPoints: StartingPointsInput
-    attributes: [AttributeInput]
+    attributes: AttributesInput
     skills: [SkillInput]
-    edges: [EdgeInput]
-    hindrances: [HindranceInput]
-    items: [ItemInput]
-    powers: [PowerInput]
+    edges: [ID]
+    hindrances: [ID]
+    items: [ID]
+    powers: [ID]
   }
 `;

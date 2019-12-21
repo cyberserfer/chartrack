@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import AppHeader from "./container/AppHeader";
-import SavageSheet from "./container/SavageSheet";
+import SavageSheet from "./container/savageSheet";
 import LandingContainer from "./container/LandingContainer";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";

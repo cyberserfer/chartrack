@@ -7,33 +7,36 @@ const Skill = {
   value: Number
 };
 
-const Attribute = {
-  name: String,
-  value: Number
-};
-
-const Detail = {
-  name: String,
-  detailType: String,
-  value: String,
-  require: String,
-  effects: [String]
-};
-
 const Sheet = new Schema({
-  userId: String,
-  details: [Detail],
+  details: {
+      playerName: String,
+      playerId: String,
+      campaign: String,
+      characterName: String,
+      description: String,
+      race: String,
+      height: String,
+      weight: String,
+      hair: String,
+      eyes: String
+  },
+  attributes: {
+    agility: Number,
+    smarts: Number,
+    spirit: Number,
+    strength: Number,
+    vigor: Number
+  },
+  skills: [Skill],
+  edges: [{ type: mongoose.Schema.ObjectId, ref: "Edge" }],
+  hindrances: [{ type: mongoose.Schema.ObjectId, ref: "Hindrance" }],
+  items: [{ type: mongoose.Schema.ObjectId, ref: "Item" }],
+  powers: [{ type: mongoose.Schema.ObjectId, ref: "Power" }],
   startingPoints: {
     // Base 5
     attributePoints: Number,
     // Base 12
     skills: Number
   },
-  attributes: [Attribute],
-  skills: [Skill],
-  edges: [{ type: mongoose.Schema.ObjectId, ref: "Edge" }],
-  hindrances: [{ type: mongoose.Schema.ObjectId, ref: "Hindrance" }],
-  items: [{ type: mongoose.Schema.ObjectId, ref: "Item" }],
-  powers: [{ type: mongoose.Schema.ObjectId, ref: "Power" }]
 });
 module.exports = mongoose.model("Sheet", Sheet);
