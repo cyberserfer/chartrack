@@ -1,177 +1,103 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 module.exports = gql`
-	extend type Query {
-		character(input: SheetInput): Sheet!
-		characters(input: SheetInput): [Sheet!]
-	}
+  extend type Query {
+    character(input: SheetInput): Sheet!
+    characters(input: SheetInput): [Sheet!]
+  }
 
-	extend type Mutation {
-		addSheet(input: SheetInput): Sheet!
-	}
+  extend type Mutation {
+    addSheet(input: SheetInput): Sheet!
+    updateSheet(input: SheetInput): Sheet!
+    deleteSheet(input: SheetInput): Int!
+  }
 
-	type Skill {
-		baseAttribute: String
-		name: String
-		value: Int
-	}
+  type Attributes {
+      agility: Int,
+      smarts: Int,
+      spirit: Int,
+      strength: Int,
+      vigor: Int
+    }
 
-	input SkillInput {
-		baseAttribute: String
-		name: String
-		value: Int
-	}
+  type CharacterDetails {
+      playerName: String,
+      playerId: String,
+      campaign: String,
+      characterName: String,
+      description: String,
+      race: String,
+      height: String,
+      weight: String,
+      hair: String,
+      eyes: String
+    }
+  input CharacterDetailsInput {
+      playerName: String,
+      playerId: String,
+      campaign: String,
+      characterName: String,
+      description: String,
+      race: String,
+      height: String,
+      weight: String,
+      hair: String,
+      eyes: String
+    }
 
-	type Skills {
-		academics: Skill
-		athletics: Skill
-		battle: Skill
-		boating: Skill
-		commonKnowledge: Skill
-		driving: Skill
-		electronics: Skill
-		faith: Skill
-		fighting: Skill
-		focus: Skill
-		gambling: Skill
-		hacking: Skill
-		healing: Skill
-		intimidation: Skill
-		language: Skill
-		notice: Skill
-		occult: Skill
-		performance: Skill
-		persuasion: Skill
-		piloting: Skill
-		psionics: Skill
-		repair: Skill
-		research: Skill
-		riding: Skill
-		science: Skill
-		shooting: Skill
-		spellcasting: Skill
-		stealth: Skill
-		survival: Skill
-		taunt: Skill
-		thievery: Skill
-		weirdScience: Skill
-	}
+  input AttributesInput {
+      agility: Int,
+      smarts: Int,
+      spirit: Int,
+      strength: Int,
+      vigor: Int
+    }
+    
+  type Skill {
+    baseAttribute: String
+    name: String
+    value: Int
+  }
 
-	input SkillsInput {
-		academics: SkillInput
-		athletics: SkillInput
-		battle: SkillInput
-		boating: SkillInput
-		commonKnowledge: SkillInput
-		driving: SkillInput
-		electronics: SkillInput
-		faith: SkillInput
-		fighting: SkillInput
-		focus: SkillInput
-		gambling: SkillInput
-		hacking: SkillInput
-		healing: SkillInput
-		intimidation: SkillInput
-		language: SkillInput
-		notice: SkillInput
-		occult: SkillInput
-		performance: SkillInput
-		persuasion: SkillInput
-		piloting: SkillInput
-		psionics: SkillInput
-		repair: SkillInput
-		research: SkillInput
-		riding: SkillInput
-		science: SkillInput
-		shooting: SkillInput
-		spellcasting: SkillInput
-		stealth: SkillInput
-		survival: SkillInput
-		taunt: SkillInput
-		thievery: SkillInput
-		weirdScience: SkillInput
-	}
+  input SkillInput {
+    baseAttribute: String
+    name: String
+    value: Int
+  }
 
-	type Race {
-		name: String
-		effects: [String]
-	}
+  type StartingPoints {
+    attributePoints: Int
+    skills: Int
+  }
 
-	input RaceInput {
-		name: String
-		effects: [String]
-	}
+  input StartingPointsInput {
+    attributePoints: Int
+    skills: Int
+  }
 
-	type CharacterDetails {
-		background: String
-		description: String
-		height: String
-		name: String
-		race: Race
-		weight: String
-		hair: String
-		eyes: String
-	}
+  type Sheet {
+    _id: ID!
+    userId: ID
+    details: CharacterDetails
+    startingPoints: StartingPoints
+    attributes: Attributes
+    skills: [Skill]
+    edges: [Edge]
+    hindrances: [Hindrance]
+    items: [Item]
+    powers: [Power]
+  }
 
-	input CharacterDetailsInput {
-		background: String
-		description: String
-		height: String
-		name: String
-		race: RaceInput
-		weight: String
-		hair: String
-		eyes: String
-	}
-
-	type Attributes {
-		agility: Int
-		smarts: Int
-		spirit: Int
-		strength: Int
-		vigor: Int
-	}
-
-	input AttributesInput {
-		agility: Int
-		smarts: Int
-		spirit: Int
-		strength: Int
-		vigor: Int
-	}
-
-	type StartingPoints {
-		attributePoints: Int
-		skills: Int
-	}
-
-	input StartingPointsInput {
-		attributePoints: Int
-		skills: Int
-	}
-
-	type Sheet {
-		_id: ID!
-		userId: Int
-		details: CharacterDetails
-		startingPoints: StartingPoints
-		attributes: Attributes
-		skills: Skills
-		edges: [Edge]
-		hindrances: [Hindrance]
-		items: [Item]
-		powers: [Power]
-	}
-
-	input SheetInput {
-		userId: Int!
-		details: CharacterDetailsInput
-		startingPoints: StartingPointsInput
-		attributes: AttributesInput
-		skills: SkillsInput
-		edges: [EdgeInput]
-		hindrances: [HindranceInput]
-		items: [ItemInput]
-		powers: [PowerInput]
-	}
+  input SheetInput {
+    _id: ID
+    userId: ID
+    details: CharacterDetailsInput
+    startingPoints: StartingPointsInput
+    attributes: AttributesInput
+    skills: [SkillInput]
+    edges: [ID]
+    hindrances: [ID]
+    items: [ID]
+    powers: [ID]
+  }
 `;
