@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const HindranceSchema = new Schema({
     name: String,
-    type: [String],
+    hindranceType: [String],
     requirements: [String],
     description: String,
     effects: [String],

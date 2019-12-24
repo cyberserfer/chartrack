@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const EdgeSchema = new Schema({
     name: String,
-    type: [String],
+    edgeType: [String],
     requirements: [String],
     description: String,
     effects: [String]
