@@ -13,7 +13,7 @@ module.exports = gql`
 	type Hindrance {
 		_id: ID!
 		name: String
-		hindranceType: [String]
+		type: [String]
 		requirements: [String]
 		description: String
 		effects: [String]
@@ -22,7 +22,7 @@ module.exports = gql`
 
 	input HindranceInput {
 		name: String
-		hindranceType: String
+		type: String
 		requirements: [String]
 		description: String
 		effects: [String]
