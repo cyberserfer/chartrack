@@ -13,7 +13,7 @@ module.exports = gql`
 	type Edge {
 		_id: ID!
 		name: String
-		edgeType: [String]
+		type: [String]
 		requirements: [String]
 		description: String
 		effects: [String]
@@ -21,7 +21,7 @@ module.exports = gql`
 
 	input EdgeInput {
 		name: String
-		edgeType: [String]
+		type: String
 		requirements: [String]
 		description: String
 		effects: [String]
