@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
-import "./App.css";
-import AppHeader from "./container/AppHeader";
+import { Router } from "@reach/router";
 import SavageSheet from "./container/SavageSheet";
 import LandingContainer from "./container/LandingContainer";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -21,24 +14,9 @@ export default class App extends Component {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div>
-            <header className="App-header">
-              <AppHeader />
-            </header>
-            <Switch>
-              <Route
-                exact
-                path="/savageSheet/addNewCharacter"
-                render={props => (
-                  <SavageSheet {...props} addingNewCharacter={true} />
-                )}
-              />
-              <Route path="/savageSheet" component={SavageSheet} />
-
-              <Route path="/" component={LandingContainer} />
-              <Redirect from="*" to="/" />
-            </Switch>
-          </div>
+          <SavageSheet path="/savageSheet/addNewCharacter" addingNewCharacter={true} />
+          <SavageSheet path="/savageSheet" />
+          <LandingContainer path="/" />
         </Router>
       </ApolloProvider>
     );
