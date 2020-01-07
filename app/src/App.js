@@ -15,7 +15,7 @@ export default function App () {
     <ApolloProvider client={client}>
       {window.localStorage.getItem('jwt') ? (
         <Router>
-          <CharacterBrowser path='/characterBrowser' />
+          <CharacterBrowser path='/' />
           <SheetForm path='/savageSheet/addNewCharacter' />
         </Router>
       ) : (

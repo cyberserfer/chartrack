@@ -62,9 +62,19 @@ export default ({ addingNewCharacter, characterId }) => {
           }
         />
       </form>
-      <CharacterDetails />
-      <DicePoolMapper />
-      <SavageDerivedStats />
+      <CharacterDetails
+            data={character.details}
+            template={characterDetailsTemplate}
+          />
+      <DicePoolMapper
+            data={character.attributes}
+            template={attributesTemplate}
+          />
+      <SavageDerivedStats baseStats={character} />
+      <DicePoolMapper
+            data={character.skills}
+            template={swadeSkillsTemplate}
+          />
     </>
   )
 }

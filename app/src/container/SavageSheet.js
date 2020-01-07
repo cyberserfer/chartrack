@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SheetForm from './sheetForm'
+import SheetForm from './SheetForm'
 import { navigate } from '@reach/router'
 
 export default function CharacterSheet ({ addingNewCharacter }) {
