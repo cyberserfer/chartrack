@@ -42,7 +42,6 @@ module.exports = {
 			if (!validPass) {
 				throw new UserInputError('Email or password are incorrect.');
 			}
-			console.log(user)
 			return { token: createToken(user, secret, '30d'), userId: user._id };
 		}
 	}
