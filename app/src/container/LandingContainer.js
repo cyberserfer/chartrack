@@ -40,7 +40,6 @@ const LOGIN = gql`
 `
 
 function LandingContainer(props) {
-  console.log('local storage', window.localStorage.getItem("jwt"))
   const [authed, setAuthed] = useState(window.localStorage.getItem("jwt"))
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -49,14 +48,12 @@ function LandingContainer(props) {
   useEffect(() => {
     if (data) {
 
-      console.log('data', data)
       window.localStorage.setItem("jwt", data.signIn.token)
       window.localStorage.setItem("userId", data.signIn.userId)
       setAuthed(window.localStorage.getItem("jwt"))
       props.history.push("/savageSheet")
     }
   }, [data, authed])
-  console.log('email:', email, 'authed:', authed, window.localStorage, 'data:', data)
   return (
   authed ? (
     <>

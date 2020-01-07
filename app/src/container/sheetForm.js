@@ -1,12 +1,11 @@
-
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import {useQuery} from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
 import SavageDerivedStats from '../component/SavageDerivedStats'
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
@@ -24,38 +23,34 @@ import swadeSkillsTemplate from '../templates/swade-skills-template'
 // `
 
 export default (props) => {
-    const [state, setState] = useState({
-      addingNewCharacter: props.addingNewCharacter,
-      character: null
-    })
-    
-    const {data: {character = {}} = {}, loading, error} = useQuery(
-        GET_CHARACTER,
-        {
-          variables: {_id: props.characterId},
-          skip: !props.characterId
-        }
-      )
-    
-      if (character && !state.character) {
-        // setState(character)
-        console.log(character, state.character)
-      }
+  const [state, setState] = useState({
+    addingNewCharacter: props.addingNewCharacter,
+    character: null
+  })
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        console.log('submitting...', e.target, state)
-        return
-      }
+  const { data: { character = {} } = {}, loading, error } = useQuery(
+    GET_CHARACTER,
+    {
+      variables: { _id: props.characterId },
+      skip: !props.characterId
+    }
+  )
 
-    if (loading) {
-        return <h1> CALM DOWN YOUR CHARACTER IS LOADING! </h1>
-      }
-      if (error) {
-        return <h1> FUCK THERE WAS AN ERROR!!! </h1>
-      }
-    console.log('state.props.addingNewCharacter', state.addingNewCharacters, 'props', props)
-    return (
+  if (character && !state.character) {
+    // setState(character)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+  }
+
+  if (loading) {
+    return <h1> CALM DOWN YOUR CHARACTER IS LOADING! </h1>
+  }
+  if (error) {
+    return <h1> FUCK THERE WAS AN ERROR!!! </h1>
+  }
+  return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>
         <Grid item xs={1} />
