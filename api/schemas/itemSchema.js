@@ -6,7 +6,7 @@ module.exports = gql`
 		items(input: ItemInput): [Item]!
 	}
 	extend type Mutation {
-		addItem(input: EdgeInput): Item!
+		addItem(input: ItemInput): Item!
 	}
 	type Item {
 		_id: ID!
@@ -24,6 +24,7 @@ module.exports = gql`
 		rof: Int
 		shots: Int
 		weight: Int
+		tag: [String!]!
 	}
 
 	input ItemInput {
@@ -41,5 +42,6 @@ module.exports = gql`
 		rof: Int
 		shots: Int
 		weight: Int
+		tag: [String!]!
 	}
 `;

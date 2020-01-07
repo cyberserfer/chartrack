@@ -11,7 +11,6 @@ module.exports = gql`
     updateSheet(input: SheetInput): Sheet!
     deleteSheet(input: SheetInput): Int!
   }
-
   type Attributes {
       agility: Int,
       smarts: Int,

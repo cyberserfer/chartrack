@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const itemSchema = new mongoose.Schema({
+const ItemSchema = new Schema({
     armor: Number,
     ap: Number,
     cost: Number,
@@ -15,6 +16,8 @@ const itemSchema = new mongoose.Schema({
     rof: Number,
     shots: Number,
     weight: Number,
+    tag: [String]
+
 });
 
-module.exports = mongoose.model('Item', itemSchema);
+module.exports = mongoose.model('Item', ItemSchema);

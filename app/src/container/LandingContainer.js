@@ -6,14 +6,14 @@ import gql from 'graphql-tag';
 
 const LoginWrapper = styled.div`
 	width: 100%;
-	height: 85vh;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	form {
 		display: flex;
 		flex-direction: column;
-		jusitfy-content: center;
+		justify-content: center;
 		div {
 			display: flex;
 			flex-direction: column;
@@ -46,7 +46,7 @@ function LandingContainer(props) {
     if (data) {
       window.localStorage.setItem("jwt", data.signIn.token)
       setAuthed(window.localStorage.getItem("jwt"))
-      navigate('/savageSheet')
+      navigate('/characterSelect')
     }
   }, [data, authed])
   return authed ? (

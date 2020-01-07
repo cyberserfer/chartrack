@@ -12,6 +12,6 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addItem: async (_, args, { models }) => await new models.Item(args).save()
+		addItem: async (_, { input }, { models }) => await new models.Item(input).save()
 	}
 };

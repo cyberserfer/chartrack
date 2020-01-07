@@ -1,24 +1,26 @@
-import React, { Component } from "react";
-import { Router } from "@reach/router";
-import SavageSheet from "./container/SavageSheet";
-import LandingContainer from "./container/LandingContainer";
-import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
+import React from 'react'
+import { Router } from '@reach/router'
+import LandingContainer from './container/LandingContainer'
+import { ApolloProvider } from '@apollo/react-hooks'
+import ApolloClient from 'apollo-boost'
+import CharacterSelect from './component/CharacterSelect'
 
 const client = new ApolloClient({
-  uri: "http://localhost:8000/graphql"
-});
+  uri: 'http://localhost:8000/graphql'
+})
 
-export default class App extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
+export default function App () {
+  return (
+    <ApolloProvider client={client}>
+      {window.localStorage.getItem('jwt') ? (
         <Router>
-          <SavageSheet path="/savageSheet/addNewCharacter" addingNewCharacter={true} />
-          <SavageSheet path="/savageSheet" />
-          <LandingContainer path="/" />
+          <CharacterSelect path='/characterSelect' />
         </Router>
-      </ApolloProvider>
-    );
-  }
+      ) : (
+        <Router>
+          <LandingContainer path='/' />
+        </Router>
+      )}
+    </ApolloProvider>
+  )
 }
