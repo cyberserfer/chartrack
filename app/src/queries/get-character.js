@@ -15,8 +15,9 @@ export default gql`
           weight
           hair
           eyes
+          experience
         }
-        startingPoints {
+        currentPoints {
           attributePoints
           skills
         }
@@ -41,8 +42,6 @@ export default gql`
         }
         hindrances {
           name
-          hindranceType 
-          requirements
           description
           effects 
           severity

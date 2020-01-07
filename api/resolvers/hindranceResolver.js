@@ -12,6 +12,14 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addHindrance: async (_, { input }, { models }) => await new models.Hindrance(input).save()
+		addHindrance: async (_, { input }, { models }) => await new models.Hindrance(input).save(),
+	
+		addHindrances: async (_, { input }) => await models.Hindrance.insertMany(input, function (err, docs) {
+			if (err){ 
+				return console.error(err);
+			} else {
+			  console.log("Multiple documents inserted to Collection");
+			}
+		  })
 	}
-};
+}

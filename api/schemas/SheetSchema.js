@@ -31,6 +31,7 @@ module.exports = gql`
       weight: String,
       hair: String,
       eyes: String
+      experience: Int
     }
   input CharacterDetailsInput {
       playerName: String,
@@ -65,12 +66,12 @@ module.exports = gql`
     value: Int
   }
 
-  type StartingPoints {
+  type CurrentPoints {
     attributePoints: Int
     skills: Int
   }
 
-  input StartingPointsInput {
+  input CurrentPointsInput {
     attributePoints: Int
     skills: Int
   }
@@ -79,7 +80,7 @@ module.exports = gql`
     _id: ID!
     userId: ID
     details: CharacterDetails
-    startingPoints: StartingPoints
+    currentPoints: currentPoints
     attributes: Attributes
     skills: [Skill]
     edges: [Edge]
@@ -92,7 +93,7 @@ module.exports = gql`
     _id: ID
     userId: ID
     details: CharacterDetailsInput
-    startingPoints: StartingPointsInput
+    currentPoints: currentPointsInput
     attributes: AttributesInput
     skills: [SkillInput]
     edges: [ID]

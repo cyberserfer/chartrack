@@ -12,6 +12,14 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addPower: async (_, { input }, { models }) => await new models.Power(input).save()
+		addPower: async (_, { input }, { models }) => await new models.Power(input).save(),
+
+		addPowers: async (_, { input }) => await models.Power.insertMany(input, function (err, docs) {
+			if (err){ 
+				return console.error(err);
+			} else {
+			  console.log("Multiple documents inserted to Collection");
+			}
+		  })
 	}
 };
