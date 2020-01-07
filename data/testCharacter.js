@@ -10,7 +10,8 @@ const testCharacter = {
         height: "5\"11\"",
         weight: "3 bills",
         hair: "blue",
-        eyes:"6"
+        eyes:"6",
+        experience: 0
     },
     attributes: {
         agility: 6,
@@ -19,7 +20,7 @@ const testCharacter = {
         strength: 4,
         vigor: 6
     },
-    startingPoints: {
+    currentPoints: {
         attributePoints: 5,
         skills: 12
     },

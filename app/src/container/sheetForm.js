@@ -6,22 +6,34 @@ import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
 import SavageDerivedStats from '../component/SavageDerivedStats'
+import gql from 'graphql-tag';
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
 import attributesTemplate from '../templates/attributes-template'
 import swadeSkillsTemplate from '../templates/swade-skills-template'
 
-export default ({ characterId }) => {
+// TODO: Make this work
+// const ADD_CHARACTER = gql`
+//   mutation addCharacter($sheet: Object) {
+//       details {
+//           characterName
+//           _id
+//       }
+//   }
+// `
+
+export default (props) => {
     const [state, setState] = useState({
-        character: null
-      })
+      addingNewCharacter: props.addingNewCharacter,
+      character: null
+    })
     
     const {data: {character = {}} = {}, loading, error} = useQuery(
         GET_CHARACTER,
         {
-          variables: {_id: characterId},
-          skip: !characterId
+          variables: {_id: props.characterId},
+          skip: !props.characterId
         }
       )
     
@@ -42,7 +54,7 @@ export default ({ characterId }) => {
       if (error) {
         return <h1> FUCK THERE WAS AN ERROR!!! </h1>
       }
-    
+    console.log('state.props.addingNewCharacter', state.addingNewCharacters, 'props', props)
     return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>

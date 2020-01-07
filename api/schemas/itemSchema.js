@@ -6,7 +6,8 @@ module.exports = gql`
 		items(input: ItemInput): [Item]!
 	}
 	extend type Mutation {
-		addItem(input: EdgeInput): Item!
+		addItem(input: ItemInput): Boolean
+		addItems(input: [ItemInput]): Boolean
 	}
 	type Item {
 		_id: ID!
@@ -16,11 +17,12 @@ module.exports = gql`
 		cover: Int
 		damage: String
 		effects: [String]
-		minimumStrength: String
+		minimumStrength: Int
 		name: String!
 		notes: String
 		parry: Int
 		range: String
+		reach: Int
 		rof: Int
 		shots: Int
 		weight: Int
@@ -33,11 +35,12 @@ module.exports = gql`
 		cover: Int
 		damage: String
 		effects: [String]
-		minimumStrength: String
+		minimumStrength: Int
 		name: String!
 		notes: String
 		parry: Int
 		range: String
+		reach: Int
 		rof: Int
 		shots: Int
 		weight: Int

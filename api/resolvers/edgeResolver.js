@@ -12,6 +12,14 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addEdge: async (_, { input }, { models }) => await new models.Edge(input).save()
+		addEdge: async (_, { input }, { models }) => await new models.Edge(input).save(),
+
+		addEdges: async (_, { input }) => await models.Edge.insertMany(input, function (err, docs) {
+			if (err){ 
+				return console.error(err);
+			} else {
+			  console.log("Multiple documents inserted to Collection");
+			}
+		  })
 	}
 };
