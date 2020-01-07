@@ -12,6 +12,7 @@ const baseSchema = gql`
 	}
 	type Mutation {
 		_: Boolean
+		delete(input: [ID]): Boolean
 	}
 	type Subscription {
 		_: Boolean

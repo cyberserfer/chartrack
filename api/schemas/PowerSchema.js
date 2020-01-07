@@ -7,27 +7,28 @@ module.exports = gql`
 	}
 
 	extend type Mutation {
-		addPower(input: PowerInput): Power!
+		addPower(input: PowerInput): Boolean
+		addPowers(input: [PowerInput]): Boolean
 	}
 
 	type Power {
 		_id: ID!
-		duration: Int
+		duration: String
 		modifiers: [String]
 		name: String
-		powerPoints: Int
+		powerPoints: String
 		range: String
-		rank: String
+		rank: Int
 		trappings: [String]
 	}
 
 	input PowerInput {
-		duration: Int
+		duration: String
 		modifiers: [String]
 		name: String
-		powerPoints: Int
+		powerPoints: String
 		range: String
-		rank: String
+		rank: Int
 		trappings: [String]
 	}
 `;

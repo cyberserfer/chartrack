@@ -7,7 +7,7 @@ const Skill = {
   value: Number
 };
 
-const Sheet = new Schema({
+export const Sheet = new Schema({
   details: {
       playerName: String,
       playerId: String,
@@ -18,7 +18,8 @@ const Sheet = new Schema({
       height: String,
       weight: String,
       hair: String,
-      eyes: String
+      eyes: String,
+      experience: Number
   },
   attributes: {
     agility: Number,
@@ -32,7 +33,7 @@ const Sheet = new Schema({
   hindrances: [{ type: mongoose.Schema.ObjectId, ref: "Hindrance" }],
   items: [{ type: mongoose.Schema.ObjectId, ref: "Item" }],
   powers: [{ type: mongoose.Schema.ObjectId, ref: "Power" }],
-  startingPoints: {
+  currentPoints: {
     // Base 5
     attributePoints: Number,
     // Base 12

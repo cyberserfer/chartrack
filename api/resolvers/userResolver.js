@@ -27,7 +27,7 @@ module.exports = {
 			const hashedPassword = bcrypt.hashSync(password, 10);
 			const user = new User({ email, password: hashedPassword });
 			const createdUser = await user.save();
-			return { token: createToken(createdUser, secret, '30d') };
+			return { token: createToken(createdUser, secret, '30d'),  userId: user._id };
 		},
 		signIn: async (parent, { data }, { secret }) => {
 			const { email, password } = data;
@@ -42,8 +42,7 @@ module.exports = {
 			if (!validPass) {
 				throw new UserInputError('Email or password are incorrect.');
 			}
-
-			return { token: createToken(user, secret, '30d') };
+			return { token: createToken(user, secret, '30d'), userId: user._id };
 		}
 	}
 };

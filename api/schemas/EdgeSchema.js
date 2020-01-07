@@ -7,7 +7,8 @@ module.exports = gql`
 	}
 
 	extend type Mutation {
-		addEdge(input: EdgeInput): Edge!
+		addEdge(input: EdgeInput): Boolean
+		addEdges(input: [EdgeInput]): Boolean
 	}
 
 	type Edge {
