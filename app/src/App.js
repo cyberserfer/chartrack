@@ -3,7 +3,8 @@ import { Router } from '@reach/router'
 import LandingContainer from './container/LandingContainer'
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
-import CharacterSelect from './component/CharacterSelect'
+import CharacterBrowser from './container/CharacterBrowser'
+import SheetForm from './container/SheetForm'
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql'
@@ -14,7 +15,8 @@ export default function App () {
     <ApolloProvider client={client}>
       {window.localStorage.getItem('jwt') ? (
         <Router>
-          <CharacterSelect path='/characterSelect' />
+          <CharacterBrowser path='/characterBrowser' />
+          <SheetForm path='/savageSheet/addNewCharacter' />
         </Router>
       ) : (
         <Router>

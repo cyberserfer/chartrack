@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React from 'react'
+import gql from 'graphql-tag'
+import { Link } from '@reach/router'
 
-export default function(props) {
-const userId = window.localStorage.getItem("userId")
+export default function (props) {
+  const userId = window.localStorage.getItem('userId')
 
-const characters = gql`
+  const characters = gql`
 query characters($userId: String! ) {
     characters(input: { userId: $userId }) {
         details {
@@ -17,21 +15,15 @@ query characters($userId: String! ) {
 }
 `
 
-return characters.length ? (
-    <>
-    {characters.map(character => <p>{character.details.characterName}</p>)}
-    </>
-)
-: (
-    <>
-    <p> UserId: {userId}. You don't have any characters saved yet! Try adding one:</p>
-    <button
-        onClick={() => {
-          props.history.push('../savageSheet/addNewCharacter')
-        }}
-      >
+  return characters.length ? (
+    characters.map((character, i) => <p key={i}>{character.details.characterName}</p>)
+  )
+    : (
+      <>
+        <p> UserId: {userId}. You don't have any characters saved yet! Try adding one:</p>
+        <Link to='../savageSheet/addNewCharacter'>
         Add new character
-      </button>
-    </>
+        </Link>
+      </>
     )
 }

@@ -4,7 +4,7 @@ import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
 import SavageDerivedStats from '../component/SavageDerivedStats'
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
@@ -21,17 +21,17 @@ import swadeSkillsTemplate from '../templates/swade-skills-template'
 //   }
 // `
 
-export default (props) => {
+export default ({ addingNewCharacter, characterId }) => {
   const [state, setState] = useState({
-    addingNewCharacter: props.addingNewCharacter,
+    addingNewCharacter,
     character: null
   })
 
   const { data: { character = {} } = {}, loading, error } = useQuery(
     GET_CHARACTER,
     {
-      variables: { _id: props.characterId },
-      skip: !props.characterId
+      variables: { _id: characterId },
+      skip: !characterId
     }
   )
 
@@ -50,16 +50,21 @@ export default (props) => {
     return <h1> FUCK THERE WAS AN ERROR!!! </h1>
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='submit'
-        onSubmit={e => handleSubmit(e)}
-        value={
-          state.addingNewCharacter
-            ? 'Create New Character'
-            : 'Save Existing Character'
-        }
-      />
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='submit'
+          onSubmit={e => handleSubmit(e)}
+          value={
+            state.addingNewCharacter
+              ? 'Create New Character'
+              : 'Save Existing Character'
+          }
+        />
+      </form>
+      <CharacterDetails />
+      <DicePoolMapper />
+      <SavageDerivedStats />
+    </>
   )
 }
