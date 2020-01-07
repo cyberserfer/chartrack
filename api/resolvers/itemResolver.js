@@ -12,6 +12,14 @@ module.exports = {
 		}
 	},
 	Mutation: {
-		addItem: async (_, { input }, { models }) => await new models.Item(input).save()
+		addItem: async (_, args, { models }) => await new models.Item(args).save(),
+
+		addItems: async (_, { input }) => await models.Item.insertMany(input, function (err, docs) {
+			if (err) {
+				return console.error(err);
+			} else {
+				console.log("Multiple documents inserted to Collection");
+			}
+		})
 	}
 };

@@ -15,6 +15,7 @@ module.exports = gql`
 	}
 	type Token {
 		token: String!
+		userId: ID!
 	}
 	input UserInput {
 		email: String!

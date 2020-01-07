@@ -1,38 +1,46 @@
-
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
 import SavageDerivedStats from '../component/SavageDerivedStats'
+import gql from 'graphql-tag'
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
 import attributesTemplate from '../templates/attributes-template'
 import swadeSkillsTemplate from '../templates/swade-skills-template'
 
-export default ({ characterId }) => {
+// TODO: Make this work
+// const ADD_CHARACTER = gql`
+//   mutation addCharacter($sheet: Object) {
+//       details {
+//           characterName
+//           _id
+//       }
+//   }
+// `
+
+export default (props) => {
   const [state, setState] = useState({
+    addingNewCharacter: props.addingNewCharacter,
     character: null
   })
 
   const { data: { character = {} } = {}, loading, error } = useQuery(
     GET_CHARACTER,
     {
-      variables: { _id: characterId },
-      skip: !characterId
+      variables: { _id: props.characterId },
+      skip: !props.characterId
     }
   )
 
   if (character && !state.character) {
     // setState(character)
-    console.log(character, state.character)
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log('submitting...', e.target, state)
-    return
   }
 
   if (loading) {
@@ -41,7 +49,6 @@ export default ({ characterId }) => {
   if (error) {
     return <h1> FUCK THERE WAS AN ERROR!!! </h1>
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <input

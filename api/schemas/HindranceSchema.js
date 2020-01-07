@@ -7,14 +7,13 @@ module.exports = gql`
 	}
 
 	extend type Mutation {
-		addHindrance(input: HindranceInput): Hindrance!
+		addHindrance(input: HindranceInput): Boolean
+		addHindrances(input: [HindranceInput]): Boolean
 	}
 
 	type Hindrance {
 		_id: ID!
 		name: String
-		hindranceType: [String]
-		requirements: [String]
 		description: String
 		effects: [String]
 		severity: String
@@ -22,8 +21,6 @@ module.exports = gql`
 
 	input HindranceInput {
 		name: String
-		hindranceType: String
-		requirements: [String]
 		description: String
 		effects: [String]
 		severity: String

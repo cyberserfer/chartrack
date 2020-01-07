@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PowerSchema = new Schema({
-    duration: Number,
+    duration: String,
     modifiers: [String],
     name: String,
-    powerPoints: Number,
+    powerPoints: String,
     range: String,
-    rank: String,
+    rank: Number,
     trappings: [String]
 })
 
