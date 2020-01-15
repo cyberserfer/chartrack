@@ -26,6 +26,7 @@ module.exports = gql`
 		rof: Int
 		shots: Int
 		weight: Int
+		tag: [String!]!
 	}
 
 	input ItemInput {
@@ -44,5 +45,6 @@ module.exports = gql`
 		rof: Int
 		shots: Int
 		weight: Int
+		tag: [String!]!
 	}
 `;

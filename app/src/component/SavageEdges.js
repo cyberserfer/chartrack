@@ -1,6 +1,4 @@
 import React from 'react';
-import { Grid, IconButton, Tooltip } from '@material-ui/core';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const SavageEdges = ({ currentEdges, edgesList }) => (
 	<div>

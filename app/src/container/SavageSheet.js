@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import SheetForm from './sheetForm'
+import { navigate } from '@reach/router'
 
-export default function CharacterSheet(props) {
-  const [state, setState] = useState({
-    addingNewCharacter: props.addingNewCharacter
-  })
+export default function CharacterSheet ({ addingNewCharacter }) {
+  const [state, setState] = useState({ addingNewCharacter })
 
   const characterId = !state.addingNewCharacter
     ? window.location.pathname.split('/')[2]
@@ -14,8 +13,8 @@ export default function CharacterSheet(props) {
     return (
       <button
         onClick={() => {
-          setState({addingNewCharacter: true})
-          props.history.push('../savageSheet/addNewCharacter')
+          setState({ addingNewCharacter: true })
+          navigate('../savageSheet/addNewCharacter')
         }}
       >
         Add new character
@@ -23,6 +22,5 @@ export default function CharacterSheet(props) {
     )
   }
 
-  return <SheetForm characterId={characterId}/>
-
+  return <SheetForm characterId={characterId} />
 }

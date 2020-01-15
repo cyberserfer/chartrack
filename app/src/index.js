@@ -1,8 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { normalize } from 'polished'
 
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
+const GlobalStyles = createGlobalStyle`
+    ${normalize()}
+    body {
+        margin: 0;
+    }
+`
+
+const tempTheme = {
+    colors: {
+        primary: '#26de81'
+    }
+}
+
+ReactDOM.render(
+    <ThemeProvider theme={tempTheme}>
+        <GlobalStyles />
+        <App />
+    </ThemeProvider>
+    , document.getElementById('root'))
