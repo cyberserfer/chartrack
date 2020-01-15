@@ -2,7 +2,6 @@ import React from 'react'
 import get from 'lodash.get'
 
 export default ({baseStats: {attributes, skills}}) => {
-  console.log('savage derived stats', attributes, skills)
   const fighting = skills ? get(skills.find(prop => prop.name === 'Fighting'),
     'value',
     0
@@ -38,13 +37,13 @@ export default ({baseStats: {attributes, skills}}) => {
       <h2>Derived Stats</h2>
       <div>
         <div>Pace: 6</div>
-        <span style={{fontSize: '50%'}}>
+        <span style={{fontSize: '75%'}}>
           It’s 6 unless you have Edges or Hindrances that modify it
         </span>
         <div>Parry: {2 + fighting / 2}</div>
-        <span style={{fontSize: '50%'}}>2 + Half Fighting</span>
+        <span style={{fontSize: '75%'}}>2 + Half Fighting</span>
         <div>Toughness: {2 + (vigor || 0) / 2}</div>
-        <span style={{fontSize: '50%'}}>2 + Half Vigor</span>
+        <span style={{fontSize: '75%'}}>2 + Half Vigor</span>
         <div>Max Encumbrance: {maxEncumberance()} </div>
       </div>
     </div>
