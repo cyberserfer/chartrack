@@ -1,32 +1,26 @@
-import React, { useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import React, { useState, useEffect } from 'react'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import ADD_CHARACTER from '../queries/add-character'
 import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
 import SavageDerivedStats from '../component/SavageDerivedStats'
-// import gql from 'graphql-tag'
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
 import attributesTemplate from '../templates/attributes-template'
 import swadeSkillsTemplate from '../templates/swade-skills-template'
 
-// TODO: Make this work
-// const ADD_CHARACTER = gql`
-//   mutation addCharacter($sheet: Object) {
-//       details {
-//           characterName
-//           _id
-//       }
-//   }
-// `
 
-export default ({ addingNewCharacter, characterId }) => {
-  const [state, setState] = useState({
-    addingNewCharacter,
-    character: null
-  })
 
+
+export default ({ path, uri, location, navigate}) => {
+  
+  const characterId = window.location.pathname.split('/')[2] || null
+  console.log('character id', characterId)
+  const [characterState, setCharacterState] = useState({})
+
+  const [addSheet, { savedCharacterData, saveSheetLoading, saveSheetError }] = useMutation(ADD_CHARACTER)
   const { data: { character = {} } = {}, loading, error } = useQuery(
     GET_CHARACTER,
     {
@@ -35,12 +29,30 @@ export default ({ addingNewCharacter, characterId }) => {
     }
   )
 
-  if (character && !state.character) {
+  if (character && !characterState) {
     // setState(character)
   }
 
+  const updateFunction = (category, {target: { name, value}}) => setCharacterState({
+      ...characterState,
+      [category]: {
+        ...characterState[category],
+        [name] : value
+      }
+    })
+
+  useEffect(() => console.log('character state:', characterState))
+
+
   const handleSubmit = e => {
     e.preventDefault()
+
+    
+
+    addSheet({ variables: characterState })
+    if (saveSheetError) {
+      console.log(saveSheetError)
+    }
   }
 
   if (loading) {
@@ -56,7 +68,7 @@ export default ({ addingNewCharacter, characterId }) => {
           type='submit'
           onSubmit={e => handleSubmit(e)}
           value={
-            state.addingNewCharacter
+            path === '/savageSheet/addNewCharacter'
               ? 'Create New Character'
               : 'Save Existing Character'
           }
@@ -65,6 +77,7 @@ export default ({ addingNewCharacter, characterId }) => {
       <CharacterDetails
             data={character.details}
             template={characterDetailsTemplate}
+            updateFunction={updateFunction}
           />
       <DicePoolMapper
             data={character.attributes}

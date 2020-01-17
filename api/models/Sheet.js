@@ -7,7 +7,9 @@ const Skill = {
   value: Number
 };
 
-export const Sheet = new Schema({
+const Sheet = new Schema({
+  _id: String,
+  userId: String,
   details: {
       playerName: String,
       playerId: String,

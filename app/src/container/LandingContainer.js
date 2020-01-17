@@ -47,7 +47,6 @@ function LandingContainer (props) {
   useEffect(() => {
     if (data) {
       window.localStorage.setItem('jwt', data.signIn.token)
-      window.localStorage.setItem('userId', data.signIn.userId)
       setAuthed(window.localStorage.getItem('jwt'))
       navigate('/characterBrowser')
     }
