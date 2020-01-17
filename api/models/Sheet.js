@@ -8,7 +8,7 @@ const Skill = {
 };
 
 const Sheet = new Schema({
-  _id: String,
+  _id: Schema.ObjectId,
   userId: String,
   details: {
       playerName: String,

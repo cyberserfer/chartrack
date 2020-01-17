@@ -3,7 +3,6 @@ import { Router } from '@reach/router'
 import LandingContainer from './container/LandingContainer'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
-import CharacterBrowser from './container/CharacterBrowser'
 import SheetForm from './container/SheetForm'
 
 const httpLink = new HttpLink({ uri: 'http://localhost:8000/graphql' });
@@ -31,17 +30,11 @@ const client = new ApolloClient({
 export default function App () {
   return (
     <ApolloProvider client={client}>
-      {window.localStorage.getItem('jwt') ? (
-        <Router>
-          <CharacterBrowser path='/' />
-          <SheetForm path='/savageSheet/addNewCharacter' />
-          <SheetForm path='/savageSheet/:characterId' />
-        </Router>
-      ) : (
-        <Router>
-          <LandingContainer path='/' />
-        </Router>
-      )}
+      <Router>
+        <LandingContainer path='/' />
+        <SheetForm path='/savageSheet/addNewCharacter' />
+        <SheetForm path='/savageSheet/:characterId' />
+      </Router>
     </ApolloProvider>
   )
 }

@@ -21,7 +21,8 @@ const { data: { characters = []} = {} } = useQuery(GET_MY_CHARACTERS)
   return characters && characters.length ? (
     <>
     <h2> Here's a list of all your characters:</h2>
-      { characters.map((character, i) => <Link to={`../savageSheet/${character._id}`} key={i}>{character.details.characterName}</Link>)}
+      { characters.map((character, i) => 
+      <Link to={`/savageSheet/${character._id}`} key={i}>{character.details.characterName}</Link>)}
     </>
   )
     : (

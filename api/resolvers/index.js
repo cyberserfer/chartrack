@@ -12,7 +12,7 @@ const deleteResolver = {
 				if (err) {
 					return console.error(err);
 				} else {
-					console.log(`Docoments deleted from ${model}`)
+					console.log(`Documents deleted from ${model}`)
 				}
 			})
 	})
