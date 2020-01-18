@@ -3,6 +3,7 @@ import List from "./List";
 import get from "lodash.get";
 
 export default ({ data, template, updateFunction }) => {
+  const { category, title, defaultValue, dicePool, fields} = template
     const getValue = (field) => data.length ? get(
     data.find(el => el.name === field.name),
     "value",
@@ -10,16 +11,26 @@ export default ({ data, template, updateFunction }) => {
     : data[field.name.toLowerCase()]
 
   return (
-  <>
-    <h2>{template.title}</h2>
-    {template.fields.map(field => (
-      <List
-        key={field.name}
-        objName={field.name}
-        objValue={data ? getValue(field) : template.defaultValue || 0}
-        possibleValues={template.dicePool}
-        funcOne={e => updateFunction(e)}
-      />
+  <div style={{ margin: '1em'}}>
+    <h2>{title}</h2>
+    {fields.map(field => (
+      <div key={JSON.stringify(field)}>
+        <label htmlFor={field.key} style={{ marginRight: '1em'}}>{field.name}</label>
+          <select
+            name={field.key}
+            defaultValue={defaultValue}
+            onChange={e => {
+              console.log(e.target)
+              updateFunction(e, { field, category })
+            }}
+          >
+            {dicePool.map(value => (
+              <option name={field.key} key={value} value={value}>{value > 0 ? `d${value}` : value}</option>
+            ))}
+          </select>
+        <p></p>
+
+    </div>
     ))}
-  </>
+  </div>
 )}

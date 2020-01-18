@@ -22,6 +22,7 @@ mutation addSheet(
       items: $items
     }) {
         _id
+        userId
         details {
             characterName
         }

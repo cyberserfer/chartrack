@@ -2,13 +2,12 @@ import React from 'react'
 import get from 'lodash.get'
 
 export default ({baseStats: {attributes, skills}}) => {
-  const fighting = skills ? get(skills.find(prop => prop.name === 'Fighting'),
+  const fighting = skills ? get(skills.find(obj => obj['fighting']),
     'value',
     0
   ) : 0
-
-  const strength = get(attributes, 'strength', 0)
-  const vigor = get(attributes, 'vigor', 0)
+  const strength = Number(get(attributes, 'strength', 0))
+  const vigor = Number(get(attributes, 'vigor', 0))
 
   const maxEncumberance = () => {
     let newVal
@@ -33,7 +32,7 @@ export default ({baseStats: {attributes, skills}}) => {
   }
 
   return (
-    <div>
+    <div style={{ margin: '1em'}}>
       <h2>Derived Stats</h2>
       <div>
         <div>Pace: 6</div>
@@ -42,7 +41,7 @@ export default ({baseStats: {attributes, skills}}) => {
         </span>
         <div>Parry: {2 + fighting / 2}</div>
         <span style={{fontSize: '75%'}}>2 + Half Fighting</span>
-        <div>Toughness: {2 + (vigor || 0) / 2}</div>
+        <div>Toughness: {2 + (vigor || 4) / 2}</div>
         <span style={{fontSize: '75%'}}>2 + Half Vigor</span>
         <div>Max Encumbrance: {maxEncumberance()} </div>
       </div>

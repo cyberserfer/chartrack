@@ -1,10 +1,11 @@
 const { combineResolvers } = require('graphql-resolvers');
 const { isAuthenticated, isSheetOwner } = require('./authorization');
+const mongoose = require('mongoose')
 
 module.exports = {
 	Query: {
 		character: async (_, { input }, { models }) => {
-			
+
 			let sheet = await models.Sheet.findOne(input).populate(['edges','hindrances']);
 			if (!sheet) return new Error('No Savage Worlds character sheet found');
 			return sheet;
@@ -21,17 +22,12 @@ module.exports = {
 	},
 	Mutation: {
 		addSheet: combineResolvers(isAuthenticated, async (_, { input } , { me, models }) => {
-			const sheet = new models.Sheet({ userId: me._id, ...input});
+			const sheet = new models.Sheet({ _id: new mongoose.Types.ObjectId(), userId: me._id, ...input});
 			return await sheet.save();
 		}),
 		updateSheet: combineResolvers(isAuthenticated, isSheetOwner, async (_, { input }, { models }) => {
 			const { id } = input;
 			return await models.Sheet.findOneAndUpdate({ _id: id }, { ...input }, { new: true })
-		}),
-		deleteSheet: combineResolvers(isAuthenticated, isSheetOwner, async (_, { input }, { models }) => {
-			const { _id } = input;
-			const { deletedCount } = await models.Sheet.deleteOne({ _id: _id });			
-			return deletedCount;			
 		}),
 	}
 };

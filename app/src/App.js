@@ -30,7 +30,7 @@ const client = new ApolloClient({
 export default function App () {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router style={{ margin: '1em' }}>
         <LandingContainer path='/' />
         <SheetForm path='/savageSheet/addNewCharacter' />
         <SheetForm path='/savageSheet/:characterId' />
