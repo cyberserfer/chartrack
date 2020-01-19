@@ -2,10 +2,14 @@ import React from "react";
 import get from 'lodash.get'
 
 export default ({ data, template: { title, dicePool, fields}, updateFunction }) => {
-
-  const getValue = (field) =>  data.length 
-    ? get(data.find(obj => obj.name === field.key), 'value', null) 
-    : data[field.key] || null
+  const getValue = (field) => {
+    if (data) {
+      return data.length 
+      ? get(data.find(obj => obj.name === field.key), 'value', null) 
+      : data[field.key] || null
+    }
+    return null
+  } 
   
   return (
   <div style={{ margin: '1em'}}>

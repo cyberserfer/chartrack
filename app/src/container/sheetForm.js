@@ -68,7 +68,6 @@ export default () => {
         character[key] = get(characterState, `${key}`, character[key])
       } 
       if (Array.isArray(character[key]) || Array.isArray(characterState[key]) ) {
-        console.log('character at the index of key', key, character[key], characterState[key] )
         // skills should be saved as the original object array
         // all other arrays should be reduced to their ids to use as mongo refs
         if (key !== 'skills' && (character[key].length || (characterState[key] && characterState[key].length))) {
@@ -91,7 +90,6 @@ export default () => {
         })
       }
     })
-    console.log('what will get saved', character)
     
     if (addingNewCharacter) {
       addSheet({ variables: characterState })
@@ -107,7 +105,6 @@ export default () => {
       console.log('saved character data', addSheetResponses, savingCharacterStatus)
     return
     }
-    console.log('updating sheet...')
     // Changes to state override key collisions with the fetched data
     updateSheet({ variables: character })
     if (updateSheetResponses.loading) {
@@ -156,10 +153,10 @@ export default () => {
       />
       <SavageDerivedStats 
         attributes={[get(characterState, 'attributes', get(character, 'attributes', {}))]}
-        skills={uniqBy([ ...get(characterState, 'skills', []), ...skills], 'name')}
+        skills={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}
       />
       <DicePoolMapper
-        data={uniqBy([ ...get(characterState, 'skills', []), ...skills], 'name')}
+        data={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}
         template={swadeSkillsTemplate}
         updateFunction={updateSkills}
       />
