@@ -6,7 +6,11 @@ module.exports = {
 			return item;
 		},
 		items: async (_, { input }, { models }) => {
-			const items = await models.Item.find(input);
+			let items
+
+			input 
+			? items = await models.Item.find({ _id: { $in: input}})
+			: items = await models.Item.find(input)
 			if (!items) return new Error('Item not found');
 			return items;
 		}

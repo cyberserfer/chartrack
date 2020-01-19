@@ -17,6 +17,8 @@ import characterDetailsTemplate from '../templates/character-details-template'
 import attributesTemplate from '../templates/attributes-template'
 import swadeSkillsTemplate from '../templates/swade-skills-template'
 
+const mapToIds = (array) => array.map(el => typeof el === 'string' ? el : `${el._id}`)
+
 export default () => {
   // pathId will either be 'addNewCharacter' or a character ID
   const pathId = window.location.pathname.split('/')[2] || null
@@ -73,7 +75,7 @@ export default () => {
         if (key !== 'skills' && (character[key].length || (characterState[key] && characterState[key].length))) {
           
           // if the query populated an array with a document object, convert it back to a mongo ref before saving
-          character[key] = character[key].map(el => typeof el === 'string' ? el : `${el._id}`)
+          character[key] = mapToIds(character[key])
           character[key] = get(characterState, `${key}`, character[key])
         }
         
@@ -153,7 +155,9 @@ export default () => {
       />
       <SavageDerivedStats 
         attributes={[get(characterState, 'attributes', get(character, 'attributes', {}))]}
+        itemIds={mapToIds([...get(character, 'items', []), ...get(characterState, 'items', [])])}
         skills={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}
+        
       />
       <DicePoolMapper
         data={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}

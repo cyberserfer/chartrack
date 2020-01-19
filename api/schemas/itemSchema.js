@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 module.exports = gql`
 	extend type Query {
 		item(input: ItemInput): Item!
-		items(input: ItemInput): [Item]!
+		items(input: [ID]): [Item]!
 	}
 	extend type Mutation {
 		addItem(input: ItemInput): Boolean
