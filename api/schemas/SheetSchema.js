@@ -21,7 +21,6 @@ module.exports = gql`
 
   type CharacterDetails {
       playerName: String,
-      playerId: String,
       campaign: String,
       characterName: String,
       description: String,
@@ -42,6 +41,7 @@ module.exports = gql`
       weight: String,
       hair: String,
       eyes: String
+      experience: Int
     }
 
   input AttributesInput {

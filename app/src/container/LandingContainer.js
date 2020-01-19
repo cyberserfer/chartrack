@@ -52,6 +52,9 @@ function LandingContainer (props) {
       navigate('/')
     }
   }, [data, authed])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>FUCK THERE WAS AN ERROR!!!</p>
   return (
     <>
     {window.localStorage.getItem('jwt') ? (

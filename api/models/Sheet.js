@@ -12,7 +12,6 @@ const Sheet = new Schema({
   userId: String,
   details: {
       playerName: String,
-      playerId: String,
       campaign: String,
       characterName: String,
       description: String,

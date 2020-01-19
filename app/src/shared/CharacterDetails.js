@@ -1,7 +1,6 @@
 
 import React from 'react'
 import get from 'lodash.get'
-import { FragmentsOnCompositeTypesRule } from 'graphql'
 
 const FieldElement = ({ fieldKey, name, element, defaultValue, updateFunction}) => {
   if (element === 'textarea') {
@@ -26,7 +25,6 @@ const FieldElement = ({ fieldKey, name, element, defaultValue, updateFunction}) 
 }
 
 export default ({data, template, updateFunction}) => {
-  console.log('data', data)
   const getValue = (field) => data.length 
     ? get(data.find(el => el.name === field.key),'value','')
     : data[field.key]

@@ -1,11 +1,8 @@
 import React from 'react'
 import get from 'lodash.get'
 
-export default ({baseStats: {attributes, skills}}) => {
-  const fighting = skills ? get(skills.find(obj => obj['fighting']),
-    'value',
-    0
-  ) : 0
+export default ({attributes, skills}) => {
+  const fighting = skills ? get(skills.find(obj => obj.name === 'fighting'), 'value', 0 ) : 0
   const strength = Number(get(attributes, 'strength', 0))
   const vigor = Number(get(attributes, 'vigor', 0))
 

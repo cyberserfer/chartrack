@@ -6,7 +6,6 @@ export default gql`
         _id
         details {
           playerName
-          playerId
           campaign
           characterName
           description
@@ -34,6 +33,7 @@ export default gql`
           value
         }
         edges {
+          _id
           name
           edgeType 
           requirements
@@ -41,6 +41,7 @@ export default gql`
           effects 
         }
         hindrances {
+          _id
           name
           description
           effects 

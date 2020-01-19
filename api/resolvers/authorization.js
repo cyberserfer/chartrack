@@ -5,9 +5,9 @@ const isAuthenticated = (parent, args, { me }) =>
 	me ? skip : new ForbiddenError('Not authenticated as user.');
 
 const isSheetOwner = async (parent, { input }, { me, models }) => {
-	const { id } = input;
+	const { _id } = input;
 
-	const sheet = await models.Sheet.findOne({ _id: id });
+	const sheet = await models.Sheet.findOne({ _id });
 
 	if (!sheet) {
 		throw new Error('Sheet not found.');
