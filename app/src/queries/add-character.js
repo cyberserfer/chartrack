@@ -1,11 +1,31 @@
 import gql from 'graphql-tag'
-// import Sheet from '../../../api/schemas/SheetSchema'
 
 export default gql`
-  mutation addCharacter($sheet: Object) {
-      details {
-          characterName
-          _id
-      }
+mutation addSheet(
+    $details: CharacterDetailsInput,
+    $attributes: AttributesInput,
+    $currentPoints: CurrentPointsInput,
+    $skills: [SkillInput],
+    $edges: [ID],
+    $hindrances: [ID],
+    $powers: [ID],
+    $items: [ID]
+) {
+    addSheet(input: {
+      details: $details
+      attributes: $attributes
+      currentPoints: $currentPoints
+      skills: $skills         
+      edges: $edges
+      hindrances: $hindrances
+      powers: $powers
+      items: $items
+    }) {
+        _id
+        userId
+        details {
+            characterName
+        }
+    }
 }
 `

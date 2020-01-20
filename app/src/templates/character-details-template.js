@@ -9,6 +9,6 @@ export default {
         { key: 'weight', name: 'Weight', element: 'input' },
         { key: 'hair', name: 'Hair', element: 'input' },
         { key: 'eyes', name: 'Eyes', element: 'input' },
-        { key: 'desciption', name: 'Description', element: 'textarea' },
+        { key: 'description', name: 'Description', element: 'textarea' },
     ]
 }

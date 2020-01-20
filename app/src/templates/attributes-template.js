@@ -1,13 +1,14 @@
 export default {
+    category: 'attributes',
     title: 'Attributes',
     defaultValue: 4,
-    dicePool: [0,4,6,8,10,12],
+    dicePool: [4,6,8,10,12],
     fields: [
-        { name: 'Agility' },
-        { name: 'Smarts' },
-        { name: 'Spirit' },
-        { name: 'Strength' },
-        { name: 'Vigor' },
+        { key: 'agility', name: 'Agility' },
+        { key:'smarts', name: 'Smarts' },
+        { key:'spirit', name: 'Spirit' },
+        { key:'strength', name: 'Strength' },
+        { key:'vigor', name: 'Vigor' },
         
     ]
 }

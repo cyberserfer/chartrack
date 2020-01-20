@@ -5,10 +5,6 @@ import { navigate } from '@reach/router'
 export default function CharacterSheet ({ addingNewCharacter }) {
   const [state, setState] = useState({ addingNewCharacter })
 
-  const characterId = !state.addingNewCharacter
-    ? window.location.pathname.split('/')[2]
-    : null
-
   if (!characterId && !state.addingNewCharacter) {
     return (
       <button
@@ -21,6 +17,6 @@ export default function CharacterSheet ({ addingNewCharacter }) {
       </button>
     )
   }
-
-  return <SheetForm characterId={characterId} />
+  consolel.log(characterId)
+  return <SheetForm />
 }

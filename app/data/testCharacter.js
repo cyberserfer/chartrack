@@ -3,7 +3,6 @@
 const testCharacter = {
     details: {
         playerName: "Test Player",
-        playerId: "5df3da6fb0ce483a75da1440",
         characterName: "Test Character",
         description: "This is a character created to test the application. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula rutrum risus quis dapibus. Cras aliquam felis elit. Mauris id efficitur justo. Maecenas nec laoreet lacus, id consequat justo. Praesent congue laoreet tortor nec mollis. Integer molestie lacinia risus, id finibus tortor. Morbi mollis lobortis odio. Suspendisse potenti. Morbi accumsan augue ac tellus pellentesque tempor. Nulla nec fringilla sapien.",
         race: "Human",

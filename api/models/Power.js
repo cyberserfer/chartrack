@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PowerSchema = new Schema({
+    _id: Schema.ObjectId,
     duration: String,
     modifiers: [String],
     name: String,

@@ -1,25 +1,34 @@
 import React from "react";
-import List from "./List";
-import get from "lodash.get";
+import get from 'lodash.get'
 
-export default ({ data, template, updateFunction }) => {
-    const getValue = (field) => data.length ? get(
-    data.find(el => el.name === field.name),
-    "value",
-    "")
-    : data[field.name.toLowerCase()]
-
+export default ({ data, template: { title, dicePool, fields}, updateFunction }) => {
+  const getValue = (field) => {
+    if (data) {
+      return data.length 
+      ? get(data.find(obj => obj.name === field.key), 'value', null) 
+      : data[field.key] || null
+    }
+    return null
+  } 
+  
   return (
-  <>
-    <h2>{template.title}</h2>
-    {template.fields.map(field => (
-      <List
-        key={field.name}
-        objName={field.name}
-        objValue={data ? getValue(field) : template.defaultValue || 0}
-        possibleValues={template.dicePool}
-        funcOne={e => updateFunction(e)}
-      />
+  <div style={{ margin: '1em'}}>
+    <h2>{title}</h2>
+    {fields.map(field => (
+      <div key={JSON.stringify(field)}>
+        <label htmlFor={field.key} style={{ marginRight: '1em'}}>{field.name} {field.baseAttribute ? `(${field.baseAttribute.slice(0,3)})`: null}</label>
+          <select
+            name={field.key}
+            defaultValue={getValue(field)}
+            onChange={e => updateFunction(e) }
+          >
+            {dicePool.map(value => (
+              <option name={field.key} key={value} value={value}>{value > 0 ? `d${value}` : value}</option>
+            ))}
+          </select>
+        <p></p>
+
+    </div>
     ))}
-  </>
+  </div>
 )}

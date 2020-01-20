@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { navigate } from '@reach/router'
 import styled from 'styled-components'
 import { useMutation } from '@apollo/react-hooks'
+import CharacterBrowser from './CharacterBrowser'
 import gql from 'graphql-tag'
 
 const LoginWrapper = styled.div`
@@ -47,41 +48,49 @@ function LandingContainer (props) {
   useEffect(() => {
     if (data) {
       window.localStorage.setItem('jwt', data.signIn.token)
-      window.localStorage.setItem('userId', data.signIn.userId)
       setAuthed(window.localStorage.getItem('jwt'))
-      navigate('/characterBrowser')
+      navigate('/')
     }
   }, [data, authed])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>FUCK THERE WAS AN ERROR!!!</p>
   return (
-    <LoginWrapper>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          logIn({ variables: { email, password } })
-          setEmail('')
-          setPassword('')
-        }}
-      >
-        <div>
-          <label>email</label>
-          <input
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder='Email'
-          />
-        </div>
-        <div>
-          <label>password</label>
-          <input
-            type='password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder='Password'
-          />
-        </div>
-        <button>login</button>
-      </form>
-    </LoginWrapper>
-  )
-}
+    <>
+    {window.localStorage.getItem('jwt') ? (
+      <CharacterBrowser />
+    ) : (
+      <LoginWrapper>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            logIn({ variables: { email, password } })
+            setEmail('')
+            setPassword('')
+          }}
+        >
+          <div>
+            <label>email</label>
+            <input
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder='Email'
+            />
+          </div>
+          <div>
+            <label>password</label>
+            <input
+              type='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder='Password'
+            />
+          </div>
+          <button>login</button>
+        </form>
+      </LoginWrapper>
+    )} 
+  </>
+)}
+
 export default LandingContainer
