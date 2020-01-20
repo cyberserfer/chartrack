@@ -5,7 +5,7 @@ import UPDATE_CHARACTER from '../queries/update-character'
 import GET_CHARACTER from '../queries/get-character'
 import CharacterDetails from '../shared/CharacterDetails'
 import DicePoolMapper from '../shared/DicePoolMapper'
-import ListManager from '../container/ListManager'
+import ListManager from './ListManager'
 import SavageDerivedStats from '../component/SavageDerivedStats'
 import { Link } from '@reach/router'
 import get from 'lodash.get'
@@ -38,47 +38,48 @@ export default () => {
     return <h1> FUCK THERE WAS AN ERROR!!!</h1>
   }
 
-  if (character & !characterState ) {
+  if (character & !characterState) {
     setCharacterState(character)
   }
 
-  const updateDetailsAttributes = ({target: { name, value}}, { category }) => {
+  const updateDetailsAttributes = ({ target: { name, value } }, { category }) => {
     // cast attribute value to a number
     value = category !== 'details' ? Number(value) : value
     return setCharacterState({
       ...characterState,
       [category]: {
         ...characterState[category],
-        [name] : value
+        [name]: value
       }
     })
   }
 
-  const updateSkills = ({target: { name, value }}) => setCharacterState({ ...characterState, skills: uniqBy([ { name, value: Number(value) }, ...(characterState.skills || [])]) })
-  
+  const updateSkills = ({ target: { name, value } }) => setCharacterState({ ...characterState, skills: uniqBy([{ name, value: Number(value) }, ...(characterState.skills || [])]) })
+
   // Edges, Hindrances, Items, Powers, are all just arrays of refs
   const updateList = (list, category) => setCharacterState({
-    ...characterState, [category] : list.map(item => item._id) })
+    ...characterState, [category]: list.map(item => item._id)
+  })
 
   const handleSubmit = e => {
     e.preventDefault()
 
-// ===== Mapping state data to existing character data ====== 
-// TODO: Figure out a better way to do all of this
+    // ===== Mapping state data to existing character data ====== 
+    // TODO: Figure out a better way to do all of this
     Object.keys(character).forEach((key) => {
       if (typeof character[key] === 'string') {
         character[key] = get(characterState, `${key}`, character[key])
-      } 
-      if (Array.isArray(character[key]) || Array.isArray(characterState[key]) ) {
+      }
+      if (Array.isArray(character[key]) || Array.isArray(characterState[key])) {
         // skills should be saved as the original object array
         // all other arrays should be reduced to their ids to use as mongo refs
         if (key !== 'skills' && (character[key].length || (characterState[key] && characterState[key].length))) {
-          
+
           // if the query populated an array with a document object, convert it back to a mongo ref before saving
           character[key] = mapToIds(character[key])
           character[key] = get(characterState, `${key}`, character[key])
         }
-        
+
       }
       if (typeof character[key] === 'object' && !character[key].length) {
         const keyRef = get(character, `${key}`)
@@ -92,7 +93,7 @@ export default () => {
         })
       }
     })
-    
+
     if (addingNewCharacter) {
       addSheet({ variables: characterState })
       if (addSheetResponses.loading) {
@@ -105,7 +106,7 @@ export default () => {
       }
       setSavingCharacterStatus('SUCCESS!')
       console.log('saved character data', addSheetResponses, savingCharacterStatus)
-    return
+      return
     }
     // Changes to state override key collisions with the fetched data
     updateSheet({ variables: character })
@@ -122,11 +123,11 @@ export default () => {
 
   }
   const { details, attributes, skills, edges, hindrances, items, powers } = character
-  
+
   return (
     <>
-      <div style={{ margin: '1em', display: 'flex' }}>
-        <form style={{margin: '1em'}} onSubmit={handleSubmit}>
+      <div style={{ boxSizing: 'border-box', margin: '1em', display: 'flex', flexDirection: 'row-reverse', justifyContent: 'space-between' }}>
+        <form style={{ margin: '1em' }} onSubmit={handleSubmit}>
           <input
             type='submit'
             onSubmit={e => handleSubmit(e)}
@@ -138,56 +139,66 @@ export default () => {
           />
         </form>
         <span>{savingCharacterStatus}</span>
-        <div style={{margin: '1em'}}>
-        <Link to={'/'} >Back To My Characters</Link>
+        <div style={{ margin: '1em' }}>
+          <Link to={'/'} >Back To My Characters</Link>
         </div>
       </div>
-      <div style={{display: 'flex', flexWrap: 'wrap'}}>
-      <CharacterDetails
-        data={details}
-        template={characterDetailsTemplate}
-        updateFunction={updateDetailsAttributes}
-      />
-      <DicePoolMapper
-        data={attributes}
-        template={attributesTemplate}
-        updateFunction={updateDetailsAttributes}
-      />
-      <SavageDerivedStats 
-        attributes={[get(characterState, 'attributes', get(character, 'attributes', {}))]}
-        itemIds={mapToIds([...get(character, 'items', []), ...get(characterState, 'items', [])])}
-        skills={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}
-        
-      />
-      <DicePoolMapper
-        data={uniqBy([ ...get(characterState, 'skills', []), ...(skills || [])], 'name')}
-        template={swadeSkillsTemplate}
-        updateFunction={updateSkills}
-      />
-      <ListManager 
-        existingData={edges}
-        dataKey="edges"
-        title="Edges"
-        updateFunction={updateList}
-      />
-      <ListManager
-        existingData={hindrances} 
-        dataKey="hindrances"
-        title="Hindrances"
-        updateFunction={updateList}
-      />
-      <ListManager
-        existingData={powers} 
-        dataKey="powers"
-        title="Powers"
-        updateFunction={updateList}
-      />
-      <ListManager
-        existingData={items} 
-        dataKey="items"
-        title="Gear"
-        updateFunction={updateList}
-      />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <CharacterDetails
+          data={details}
+          template={characterDetailsTemplate}
+          updateFunction={updateDetailsAttributes}
+        />
+        <div>
+          <DicePoolMapper
+            data={attributes}
+            template={attributesTemplate}
+            updateFunction={updateDetailsAttributes}
+          />
+          <DicePoolMapper
+            data={uniqBy([...get(characterState, 'skills', []), ...(skills || [])], 'name')}
+            template={swadeSkillsTemplate}
+            updateFunction={updateSkills}
+          />
+        </div>
+        <div>
+          <SavageDerivedStats
+            attributes={[get(characterState, 'attributes', get(character, 'attributes', {}))]}
+            itemIds={mapToIds([...get(character, 'items', []), ...get(characterState, 'items', [])])}
+            skills={uniqBy([...get(characterState, 'skills', []), ...(skills || [])], 'name')}
+
+          />
+        </div>
+        <div>
+          <ListManager
+            existingData={edges}
+            dataKey="edges"
+            title="Edges"
+            updateFunction={updateList}
+          />
+          <ListManager
+            existingData={hindrances}
+            dataKey="hindrances"
+            title="Hindrances"
+            updateFunction={updateList}
+          />
+        </div>
+        <div>
+          <ListManager
+            existingData={powers}
+            dataKey="powers"
+            title="Powers"
+            updateFunction={updateList}
+          />
+        </div>
+        <div>
+          <ListManager
+            existingData={items}
+            dataKey="items"
+            title="Gear"
+            updateFunction={updateList}
+          />
+        </div>
       </div>
     </>
   )
