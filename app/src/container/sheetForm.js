@@ -11,6 +11,7 @@ import { Link } from '@reach/router'
 import get from 'lodash.get'
 import set from 'lodash.set'
 import uniqBy from 'lodash.uniqby'
+import styled from 'styled-components'
 
 // templates
 import characterDetailsTemplate from '../templates/character-details-template'
@@ -18,6 +19,12 @@ import attributesTemplate from '../templates/attributes-template'
 import swadeSkillsTemplate from '../templates/swade-skills-template'
 
 const mapToIds = (array) => array.map(el => typeof el === 'string' ? el : `${el._id}`)
+
+// styles
+const Container = styled.div`
+  flex: ${props => props.flex || 1};
+`
+
 
 export default () => {
   // pathId will either be 'addNewCharacter' or a character ID
@@ -149,7 +156,7 @@ export default () => {
           template={characterDetailsTemplate}
           updateFunction={updateDetailsAttributes}
         />
-        <div>
+        <Container flex={2}>
           <DicePoolMapper
             data={attributes}
             template={attributesTemplate}
@@ -160,16 +167,14 @@ export default () => {
             template={swadeSkillsTemplate}
             updateFunction={updateSkills}
           />
-        </div>
-        <div>
+        </Container>
+        <Container flex={3}>
           <SavageDerivedStats
             attributes={[get(characterState, 'attributes', get(character, 'attributes', {}))]}
             itemIds={mapToIds([...get(character, 'items', []), ...get(characterState, 'items', [])])}
             skills={uniqBy([...get(characterState, 'skills', []), ...(skills || [])], 'name')}
 
           />
-        </div>
-        <div>
           <ListManager
             existingData={edges}
             dataKey="edges"
@@ -182,23 +187,21 @@ export default () => {
             title="Hindrances"
             updateFunction={updateList}
           />
-        </div>
-        <div>
+        </Container>
+        <Container flex={6}>
           <ListManager
             existingData={powers}
             dataKey="powers"
             title="Powers"
             updateFunction={updateList}
           />
-        </div>
-        <div>
           <ListManager
             existingData={items}
             dataKey="items"
             title="Gear"
             updateFunction={updateList}
           />
-        </div>
+        </Container>
       </div>
     </>
   )
