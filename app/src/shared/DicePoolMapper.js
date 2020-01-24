@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   }
 `
 
-export default ({ data, template: { title, dicePool, fields }, updateFunction }) => {
+export default ({ data, template: { category, title, dicePool, fields }, updateFunction }) => {
   const getValue = (field) => {
     if (data) {
       return data.length
@@ -32,7 +32,7 @@ export default ({ data, template: { title, dicePool, fields }, updateFunction })
           <select
             name={field.key}
             defaultValue={getValue(field)}
-            onChange={e => updateFunction(e)}
+            onChange={e => updateFunction(e, { category })}
           >
             {dicePool.map(value => (
               <option name={field.key} key={value} value={value}>{value > 0 ? `d${value}` : value}</option>
